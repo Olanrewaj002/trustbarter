@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.9",
+    "firebase": "^11.6.0",
+    "firebase-admin": "^13.2.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "tailwindcss": "^4.1.1"
+  },
+  "name": "trustbarter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "tailwindcss -i ./src/input.css -o ./public/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

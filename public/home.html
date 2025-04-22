@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./output.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <!-- Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+</head>
+<body>
+    <!--Nav bar-->
+    <div class="nav-bar px-6 py-6 fixed top-0 left-0 w-full bg-white shadow-sm z-50">
+        <ul class="flex gap-10 justify-between items-center">
+        <img src="images/Trust barter try logo.png" class="w-40">
+        <ul class="hidden lg:flex gap-6 pr-10 ">
+            <a href><h3 class="font-bold text-sm">Home</h3></a>
+            <a href><h3 class="font-bold text-sm">About us</h3></a>
+            <a href><h3 class="font-bold text-sm">Services</h3></a>
+        </ul>
+        <ul class="flex gap-4">
+            <button class="bg-yellow-400 px-3 py-2 lg:py-3 lg:px-6 rounded-sm text-xs lg:text-sm font-medium"><a href>Get Started</button></a>
+            <button class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></button>
+        </ul>
+        </ul>
+    </div>
+    <!--Nav bar end-->
+
+    <!--Hero section-->
+<div class="grid grid-flow-row gap-6 my-20 py-20 lg:flex bg-gradient-to-t from-black to-blue-900">
+    <div id="hero-content" class="gap-4 flex flex-col mx-10 justify-center" data-aos="fade-right">
+      <div class="flex flex-col gap-3">
+        <h1 class="h-text text-3xl font-medium text-white tracking-tight">Sell or Swap items for goods, services or cash anytime</h1>
+        <h2 class="h-text text-lg tracking-tight text-gray-400">We help you sell and swap faster and safer.</h2>
+      </div>
+      <div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeN9h32oM-6orhtHlOxSVEAt7K3x8Iwv5NziDMdq4TUC9DcmA/viewform?usp=header">
+          <button class="h-text bg-yellow-400 lg:px-16 lg:py-5 py-2 px-8 font-bold text-gray-900 sm:hiddem rounded-md">Get Started</button>
+        </a>
+      </div>
+    </div>
+  
+    <!--Hero images-->
+    <div class="hero-img ml-10 lg:ml-20" data-aos="fade-left">
+      <img class="lg:h-96 w-full" src="images/web image.png">
+    </div>
+  </div>
+  <!--Hero section end-->
+  
+
+    <!---->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-10 mb-10 lg:mb-30 px-6">
+        <!-- Card -->
+        <div class="flex flex-col items-center text-center gap-4">
+          <div class="bg-yellow-400 p-4 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40" fill="#1f1f1f">
+              <path d="M480-600 340-740l140-140 140 140-140 140ZM40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm120-280q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440Z"/>
+            </svg>
+          </div>
+          <h2 class="font-bold text-xl">Swap</h2>
+          <p class="text-gray-500 text-sm max-w-xs">
+            Exchange goods or services with others in a secure and trusted way.
+          </p>
+        </div>
+      
+        <!-- Repeat for other two cards -->
+        <div class="flex flex-col items-center text-center gap-4">
+          <div class="bg-yellow-400 p-4 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40" fill="#1f1f1f">
+              <path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/>
+            </svg>
+          </div>
+          <h2 class="font-bold text-xl">Sell</h2>
+          <p class="text-gray-500 text-sm max-w-xs">
+            List your items and get cash offers quickly from real people near you.
+          </p>
+        </div>
+      
+        <div class="flex flex-col items-center text-center gap-4">
+          <div class="bg-yellow-400 p-4 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40" fill="#1f1f1f">
+              <path d="M336-120q-91 0-153.5-62.5T120-336q0-38 13-74t37-65l142-171-97-194h530l-97 194 142 171q24 29 37 65t13 74q0 91-63 153.5T624-120H336Zm144-200q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320Zm-95-360h190l40-80H345l40 80Zm-49 480h288q57 0 96.5-39.5T760-336q0-24-8.5-46.5T728-423L581-600H380L232-424q-15 18-23.5 41t-8.5 47q0 57 39.5 96.5T336-200Z"/>
+            </svg>
+          </div>
+          <h2 class="font-bold text-xl">Loan</h2>
+          <p class="text-gray-500 text-sm max-w-xs">
+            Access instant loans based on the value of items you're selling or swapping.
+          </p>
+        </div>
+    </div>
+      
+
+    <!--How it works div start-->
+    <div class="lg:flex grid gap-10 lg:justify-center lg:py-12">
+        <!--image-->
+        <div class="grid gap-12">
+            <div>
+                <img src="images/web-image-2.png" class="h-96 w-[700px] hidden lg:block">
+            </div>
+            <div>
+                <img src="images/web image 3.png" class="h-96 w-[700px]">
+            </div>
+        </div>
+        <div class="grid gap-12 lg:mx-10">
+            <!-- Header -->
+            <div class="flex justify-center lg:justify-start">
+                <h1 class="text-lg lg:text-2xl font-semibold text-[#550000] tracking-wide">
+                    The Steps Are Easy!
+                </h1>
+            </div>
+        
+            <!-- Steps Grid -->
+            <div class=" grid grid-flow-row gap-8 max-w-7xl mx-auto">
+            
+            <!-- Step 1 -->
+            <div class="bg-white border mx-4 lg:mx-0 border-blue-50 p-12 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#550000] text-white text-3xl font-bold shadow-md">
+                    1
+                </div>
+                </div>
+                <p class="text-center text-[#550000] font-light leading-relaxed">
+                Declare the item you want to sell or swap by clicking the <strong>"Get Started"</strong> button and completing the form.
+                </p>
+            </div>
+        
+            <!-- Step 2 -->
+            <div class="bg-white border mx-4 lg:mx-0 border-blue-50 p-12 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 flex items-center justify-center rounded-full bg-yellow-400 text-[#550000] text-3xl font-bold shadow-md">
+                    2
+                </div>
+                </div>
+                <p class="text-center text-[#550000] font-light leading-relaxed">
+                Our team of experts will reach out to you swiftly to help guide the process.
+                </p>
+            </div>
+        
+            <!-- Step 3 -->
+            <div class="bg-white border mx-4 lg:mx-0 border-blue-50 p-12 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#002d62] text-white text-3xl font-bold shadow-md">
+                    3
+                </div>
+                </div>
+                <p class="text-center text-[#550000] font-light leading-relaxed">
+                We begin processing your application to find you the best available deal.
+                </p>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+      
+    <!--How it works div end--> 
+
+    <div class="mt-20">
+        <img src="images/web-image-2.png" class="h-96 w-[700px] lg:hidden">
+    </div>
+    <!--Business Models-->
+    <section class="bg-gradient-to-br my-20 from-blue-50 via-white to-yellow-50 py-10 lg:py-20 px-6 lg:px-5">
+        <div class="text-center mb-14">
+          <h2 class="text-lg lg:text-2xl font-semibold text-[#550000] opacity-80">
+            Our Business Models
+          </h2>
+        </div>
+      
+        <div class="grid gap-10 lg:gap-5 lg:grid-cols-3">
+          <!-- Card -->
+          <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 transition duration-300 ease-in-out p-8 flex flex-col justify-between">
+            <div class="space-y-4">
+              <h5 class="inline-block bg-blue-100 text-sm px-3 py-1 rounded-full shadow text-blue-900">
+                The one you know
+              </h5>
+              <h3 class="text-xl font-semibold text-gray-800 opacity-80">
+                Traditional Barter System
+              </h3>
+              <p class="text-gray-700 opacity-80">
+                A system where two people exchange product for product, service for service,
+                or product for service—with no cash involved.
+              </p>
+            </div>
+            <div class="mt-6">
+              <a href="#" class="inline-block bg-yellow-400 font-medium px-4 py-2 rounded-md text-sm hover:bg-[#001c3f] transition">
+                Get Started
+              </a>
+            </div>
+          </div>
+      
+          <!-- Card -->
+          <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 transition duration-300 ease-in-out p-8 flex flex-col justify-between">
+            <div class="space-y-4">
+              <h5 class="inline-block bg-yellow-100 text-sm px-3 py-1 rounded-full shadow text-yellow-900">
+                A little sweetened
+              </h5>
+              <h3 class="text-xl font-semibold text-gray-800 opacity-80">
+                Hybrid Barter System
+              </h3>
+              <p class="text-gray-700 opacity-80">
+                Barter with a twist: when one item is more valuable, the difference can be
+                covered in cash—fair and flexible.
+              </p>
+            </div>
+            <div class="mt-6">
+              <a href="#" class="inline-block bg-yellow-400 font-medium px-4 py-2 rounded-md text-sm hover:bg-[#001c3f] transition">
+                Get Started
+              </a>
+            </div>
+          </div>
+      
+          <!-- Card -->
+          <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 transition duration-300 ease-in-out p-8 flex flex-col justify-between">
+            <div class="space-y-4">
+              <h5 class="inline-block bg-pink-100 text-sm px-3 py-1 rounded-full shadow text-pink-900">
+                You just want to sell
+              </h5>
+              <h3 class="text-xl font-semibold text-gray-800 opacity-80">
+                Product for Sale
+              </h3>
+              <p class="text-gray-700 opacity-80">
+                A straightforward system where goods or services are exchanged for money.
+                Sell confidently and securely.
+              </p>
+            </div>
+            <div class="mt-6">
+              <a href="#" class="inline-block bg-yellow-400 px-4 py-2 font-medium rounded-md text-sm hover:bg-[#001c3f] transition">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+    </section>
+      
+
+    <section class="relative h-[120vh] lg:h-[120vh] overflow-hidden mx-4 lg:mx-10 rounded-3xl">
+        <!-- Background Layer -->
+        <div class="absolute inset-0 bg-[url(/public/images/blue.avif)] bg-cover bg-center"></div>
+      
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-10"></div>
+      
+        <!-- Content -->
+        <div class="relative z-20 h-full flex flex-col justify-center items-center text-white text-center px-4 lg:px-20" id="parallax-content">
+          <h2 class="text-lg lg:text-2xl font-semibold text-white mb-6">Our Core Values</h2>
+          <p class="text-gray-300 max-w-2xl mb-12">
+            What guides us in building trust and delivering value in every barter and exchange.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:shadow-xl transition">
+              <h3 class="text-lg font-semibold text-yellow-400">Vast Network</h3>
+              <p class="text-sm text-gray-200 mt-2">
+                A rich ecosystem of people and businesses ready to barter products and services.
+              </p>
+            </div>
+            <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:shadow-xl transition">
+              <h3 class="text-lg font-semibold text-yellow-400">Due Diligence</h3>
+              <p class="text-sm text-gray-200 mt-2">
+                We moderate and verify item values to ensure fair trades.
+              </p>
+            </div>
+            <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 hover:shadow-xl transition">
+              <h3 class="text-lg font-semibold text-yellow-400">Trade Security</h3>
+              <p class="text-sm text-gray-200 mt-2">
+                Items are vetted for legitimacy so you can barter with confidence.
+              </p>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Form image and container -->
+    <div class="lg:flex lg:justify-center lg:mt-30 lg:mb-20 lg:mx-10"> 
+        
+        <div  class="lg:w-1/2 h-full">
+            <img src="images/International trade-rafiki.png">
+        </div>
+        <!-- Form Container -->
+        <div id="formContainer" class="max-w-md w-full p-6 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-lg lg:text-2xl font-semibold text-[#550000] mb-6">Get Started</h2>
+            
+            <form class="space-y-4 bg-gradient-to-r from-blue-900 to-black py-10 px-3 rounded-sm max-w-md w-full">
+                <!-- Name -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-300">Name</label>
+                  <input type="text" placeholder="Enter your name" class="mt-1 w-full px-4 py-2 border text-gray-400 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+            
+                <!-- Email -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-300">Email</label>
+                  <input type="email" placeholder="Enter your email" class="mt-1 w-full text-gray-400 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+            
+                <!-- Phone -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-300">Phone Number</label>
+                  <input type="tel" placeholder="Enter your phone number" class="mt-1 w-full px-4 py-2 border text-gray-400 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+            
+                <!-- City -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-300">City</label>
+                  <select class="mt-1 w-full px-4 py-2 border border-gray-300 text-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select your city</option>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Abuja">Abuja</option>
+                    <option value="Port Harcourt">Port Harcourt</option>
+                    <option value="Owerri">Owerri</option>
+                    <option value="Ibadan">Ibadan</option>
+                  </select>
+                </div>
+            
+                <!-- Action -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-300">Do you want to swap, sell or take a loan?</label>
+                  <select class="mt-1 w-full px-4 py-2 border text-gray-400 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="swap">Swap</option>
+                    <option value="sell">Sell</option>
+                    <option value="loan">Take a Loan</option>
+                  </select>
+                </div>
+            
+                <!-- Submit -->
+                <div class="pt-4">
+                  <button type="submit" class="w-full bg-yellow-400 font-semibold py-3 rounded-md hover:bg-blue-700 hover:text-white">
+                    Submit
+                  </button>
+                </div>
+            </form>
+        </div>
+    </div> 
+    <!-- Form end -->
+
+
+    <!--What you can do here-->
+    <div class="my-20 lg:my-40 lg:mx-10 mx-5 grid gap-6 lg:gap-20">
+        <div class="grid grid-flow-row gap-2">
+            <h5 class="font-sans text-sm bg-white shadow-md px-2 py-2 rounded-full w-fit">
+                Find your clarity
+            </h5>
+            <h2 class="text-2xl lg:text-3xl md:text-3xl font-medium text-[#550000]">
+                Frequently Asked Questions
+            </h2>
+        </div>
+
+        <!--div holding faq 1-->
+        <div class="grid grid-flow-row gap-4">
+            <div onclick= "openInfo()" id="faq-style1" class="font-sans bg-white shadow-md px-4 py-4 rounded-full">
+                <div class="font-sans flex justify-between">
+                    <h4 id="question-1" class="lg:font-bold">
+                        Who can use this platform?
+                    </h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+                </div>
+                <!--dropdown-->
+                <div id="drop-down" class="hidden mt-2">
+                    <h5 class="text-gray-400">
+                        Anyone can use this platform as long as you have an item to barter for goods or services, or outright sale.
+                    </h5>
+                </div>
+            </div>
+             <!--end-->
+
+              <!--div holding faq 2-->
+            <div onclick= "openInfo2()" id="faq-style2" class="font-sans bg-white shadow-md px-4 py-4 rounded-full">
+                <div class="font-sans flex justify-between">
+                    <h4 id="question-2" class="lg:font-bold">
+                        How much will I pay to use this platform?
+                    </h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+                </div>
+                <!--dropdown-->
+                <div id="drop-down2" class="hidden mt-2">
+                    <h5 class="text-gray-400">
+                        We charge a <span class="font-bold">5% fee</span> known as service charge on every successful transaction using this platform.
+                    </h5>
+                </div>
+            </div>
+             <!--end-->
+
+            <!--div holding faq 3-->
+            <div onclick= "openInfo3()" id="faq-style3" class="font-sans bg-white shadow-md px-4 py-4 rounded-full">
+                <div class="font-sans flex justify-between">
+                    <h4 id="question-3" class="lg:font-bold">
+                        How do you measure service charge?
+                    </h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+                </div>
+                <!--dropdown-->
+                <div id="drop-down3" class="hidden mt-2">
+                    <h5 class="text-gray-400">
+                        <span class="font-bold">5%</span> of the value of an item being sold or bartered on this platform is called <span class="font-bold">service charge</span>.
+                    </h5>
+                </div>
+            </div>
+            <!--end-->
+
+            <!--div holding faq 4-->
+            <div onclick= "openInfo4()" id="faq-style4" class="font-sans bg-white shadow-md px-4 py-4 rounded-full">
+                <div class="font-sans flex justify-between">
+                    <h4 id="question-4" class="lg:font-bold">
+                        How fast can I barter or sell my item?
+                    </h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+                </div>
+                <!--dropdown-->
+                <div id="drop-down4" class="hidden mt-2">
+                    <h5 class="text-gray-400">
+                        Items that are in high demand gets sold or bartered in as quickly as <span class="font-bold">24/48hrs</span> on this platform.
+                    </h5>
+                </div>
+            </div>
+            <!--end-->
+        </div>
+    </div>
+
+    <script>
+        //variables for question one divs
+        let toggleDown=document.getElementById("drop-down")
+        let faqStyle1 = document.getElementById("faq-style1")
+        let qtnOne = document.getElementById("question-1")
+
+        //variables for question two divs
+        let faqStyle2 = document.getElementById("faq-style2")
+        let qtnTwo = document.getElementById("question-2")
+        let toggleDown2 = document.getElementById("drop-down2")
+
+        //variables for faq three divs
+        let faqStyle3 = document.getElementById("faq-style3")
+        let qtnThree = document.getElementById("question-3")
+        let toggleDown3 = document.getElementById("drop-down3")
+
+        //variables for faq three divs
+        let faqStyle4 = document.getElementById("faq-style4")
+        let qtnFour = document.getElementById("question-4")
+        let toggleDown4 = document.getElementById("drop-down4")
+
+        //variables for faq three divs
+        let faqStyle5 = document.getElementById("faq-style5")
+        let qtnFive = document.getElementById("question-5")
+        let toggleDown5 = document.getElementById("drop-down5")
+
+        //functions section
+        
+        //faq one function
+        function openInfo() {
+            toggleDown.classList.toggle("hidden")
+            faqStyle1.classList.toggle("rounded-sm"), ("bg-none")
+            qtnOne.classList.toggle("font-bold")
+            qtnOne.classList.toggle("text-[#550000]")
+        }
+
+        //faq two function
+        function openInfo2() {
+            toggleDown2.classList.toggle("hidden")
+            faqStyle2.classList.toggle("rounded-sm"), ("bg-none")
+            qtnTwo.classList.toggle("font-bold")
+            qtnTwo.classList.toggle("text-[#550000]")
+        }
+
+        //faq three function
+        function openInfo3() {
+            toggleDown3.classList.toggle("hidden")
+            faqStyle3.classList.toggle("rounded-sm"), ("bg-none")
+            qtnThree.classList.toggle("font-bold")
+            qtnThree.classList.toggle("text-[#550000]")
+        }
+
+        //faq three function
+        function openInfo4() {
+            toggleDown4.classList.toggle("hidden")
+            faqStyle4.classList.toggle("rounded-sm"), ("bg-none")
+            qtnFour.classList.toggle("font-bold")
+            qtnFour.classList.toggle("text-[#550000]")
+        }
+        
+
+        // gsap for hero text
+        gsap.from(".h-text", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            scrollTrigger: {
+            trigger: "#hero-content",
+            start: "top 100%",
+            }
+        });
+
+        // gsap for hero img
+        gsap.from(".hero-img", {
+            y: 200,
+            opacity: 1,
+            duration: 6,
+            ease: "power3.out"
+        });
+
+        // gsap for form
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to("#formContainer", {
+            scrollTrigger: {
+            trigger: "#formContainer",
+            start: "top 80%", // when top of the container hits 80% of the viewport
+            toggleActions: "play reverse play reverse",
+            },
+            opacity: 80,
+            y: 0,
+            duration: 2,
+            ease: "power2.out"
+        }); 
+    </script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBrJzSs1f97vBVTvZj8qMP8VHNsXqCOQg0",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "trustbarter-4763c",
+      // optional: storageBucket, messagingSenderId, appId
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = form.querySelector('input[type="text"]').value.trim();
+        const email = form.querySelector('input[type="email"]').value.trim();
+        const phone = form.querySelector('input[type="tel"]').value.trim();
+        const city = form.querySelectorAll('select')[0].value;
+        const action = form.querySelectorAll('select')[1].value;
+
+        if (!name || !email || !phone || !city || !action) {
+          alert("Please fill out all fields.");
+          return;
+        }
+
+        try {
+          await addDoc(collection(db, "formSubmissions"), {
+            name,
+            email,
+            phone,
+            city,
+            action,
+            submittedAt: new Date()
+          });
+          alert("Form submitted successfully!");
+          form.reset();
+        } catch (error) {
+          console.error("Submission error:", error);
+          alert("Failed to submit form. Please try again.");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
