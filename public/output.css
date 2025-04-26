@@ -740,6 +740,12 @@
   .text-white {
     color: var(--color-white);
   }
+  .text-white\/65 {
+    color: color-mix(in oklab, var(--color-white) 65%, transparent);
+  }
+  .text-white\/80 {
+    color: color-mix(in oklab, var(--color-white) 80%, transparent);
+  }
   .text-yellow-400 {
     color: var(--color-yellow-400);
   }
