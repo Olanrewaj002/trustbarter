@@ -519,43 +519,65 @@
     </div>
     <div class="grid grid-flow-row lg:flex justify-between mb-8 gap-10 mx-10">
       <!-- Company Logo -->
-      <div>
-        <img img src="images/Trustbarter logo white.png" class="w-40" alt="Company Logo" class="h-12">
+      <div class="grid grid-flow-row gap-6">
+        <div>
+          <img img src="images/Trustbarter logo white.png" class="w-40" alt="Company Logo" class="h-12">
+        </div>
+        <div>
+          <ul class="flex items-center gap-8">
+            <li><img src="/public/images/11244080_x_twitter_elon musk_twitter new logo_icon.svg" class="w-12 bg-white p-2 rounded-md"></li>
+            <li><img src="images/instagram_2111463.png" class="w-12"></li>
+            <li><img src="images/social-media_15713399.png" class="w-12 bg-white rounded-md"></li>
+            <li><img src="/public/fb.svg" class="w-12"></li>
+          </ul>
+        </div>
       </div>
   
       <!-- Links Column 1 -->
-      <div class="grid grid-flow-row gap-3">
-        <a href="#" class="hover:underline"></a>
-        <a href="#" class="hover:underline">Services</a>
-        <a href="#" class="hover:underline">About</a>
-        <a href="#" class="hover:underline">Affiliate Program</a>
-        <a href="#" class="hover:underline">Special Offers</a>
+      <div>
+        <div class="grid grid-flow-row gap-2">
+          <h2 class="text-xl font-semibold text-white opacity-80">
+            Company
+          </h2>
+        </div>
+        <div class="grid grid-flow-row gap-3">
+          <a href="#" class="hover:underline"></a>
+          <a href="#" class="hover:underline text-white/60 text-sm font-semibold">Services</a>
+          <a href="#" class="hover:underline text-white/60 text-sm font-semibold">About</a>
+          <a href="#" class="hover:underline text-white/60 text-sm font-semibold">Affiliate Program</a>
+          <a href="#" class="hover:underline text-white/60 text-sm font-semibold">Special Offers</a>
+        </div>
       </div>
   
       <!-- Links Column 2 -->
       <div class="grid grid-flow-row gap-4">
         <div>
-          <h2>
+          <h2 class="text-xl font-semibold text-white opacity-80">
             Contact us
           </h2>
         </div>
 
         <div>
-          <img src="images/mail_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg">
-          <h3>
-            info@trustbarter.com.ng
+          <img src="images/mail_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" class="opacity-60">
+          <h3 class="hover:underline text-white/60 text-sm font-semibold">
+            hello@trustbarter.com.ng
           </h3>
         </div>
         <div>
-          <img src="images/call_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg">
-          <h3>
+          <img src="images/call_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" class="opacity-60">
+          <h3 class="hover:underline text-white/60 text-sm font-semibold">
             +2349045824851
           </h3>
         </div>
       </div>
     </div>
-  
   </footer>
+  <!--footer copyright-->
+  <div class="flex justify-center bg-black p-6 items-center">
+    <h4 class="text-white/60 text-sm text-center">
+      copyright 2025 <strong class="text-yellow-500">Trustbarter Limited</strong>. Designed by Olanrewaju Paul
+    </h4>
+  </div>
 
     <script>
         //variables for question one divs
@@ -734,7 +756,7 @@
          // gsap for form
          gsap.from(".form", {
             y: 180,
-            opacity: 0,
+            opacity: 40,
             duration: 2,
             stagger: 1,
             scrollTrigger: {
