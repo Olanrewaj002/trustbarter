@@ -304,7 +304,7 @@
       
 
     <!--Our core values-->
-    <section id="core-values" class="relative h-[80vh] overflow-hidden mx-4 lg:mx-5 rounded-3xl">
+    <section id="core-values" class="relative h-[100vh] overflow-hidden mx-4 lg:mx-5 rounded-3xl">
         <!-- Background Layer -->
         <div class="absolute inset-0 bg-[url(images/blue.avif)] bg-cover bg-center"></div>
       
@@ -342,68 +342,70 @@
     <!--Our core values end-->
 
     <!-- Form image and container -->
-    <div class="form lg:flex lg:justify-center overflow-x-hidden rounded-3xl lg:mx-5 mx-4 mt-20 lg:mt-30 lg:mb-20 bg-gradient-to-r from-black to-blue-900 pt-4 lg:py-10"> 
-        
-        <div  class="lg:w-1/2 h-full">
-            <img src="images/International trade-rafiki.png">
-        </div>
-        <!-- Form Container -->
-        <div id="formContainer" class="form max-w-md w-full p-6 bg-white rounded-2xl shadow-lg">
-            <div class="grid grid-flow-row mb-6">
-              <h2 class="text-lg lg:text-2xl font-semibold text-black/65">Get Started</h2>
-              <h3 class="text-black/40">Fill out this form to create a trade</h3>
-            </div>
-            
-            <form class="space-y-5 rounded-sm max-w-md w-full">
-                <!-- Name -->
-                <div>
-                  <label class="block text-sm font-medium text-[#550000]">Name</label>
-                  <input type="text" placeholder="Enter your name" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-            
-                <!-- Email -->
-                <div>
-                  <label class="block text-sm font-medium text-[#550000]">Email</label>
-                  <input type="email" placeholder="Enter your email" class="mt-1 w-full text-gray-500 px-4 py-2 border border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-            
-                <!-- Phone -->
-                <div>
-                  <label class="block text-sm font-medium text-[#550000]">Phone Number</label>
-                  <input type="tel" placeholder="Enter your phone number" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-            
-                <!-- City -->
-                <div>
-                  <label class="block text-sm font-medium text-[#550000]">City</label>
-                  <select class="mt-1 w-full px-4 py-2 border border-gray-800/70 text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="" class="bg-blue-500">Select your city</option>
-                    <option value="Lagos">Lagos</option>
-                    <option value="Abuja">Abuja</option>
-                    <option value="Port Harcourt">Port Harcourt</option>
-                    <option value="Owerri">Owerri</option>
-                    <option value="Ibadan">Ibadan</option>
-                  </select>
-                </div>
-            
-                <!-- Action -->
-                <div>
-                  <label class="block text-sm font-medium text-[#550000]">Do you want to swap, sell or take a loan?</label>
-                  <select class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="swap">Swap</option>
-                    <option value="sell">Sell</option>
-                    <option value="loan">Take a Loan</option>
-                  </select>
-                </div>
-            
-                <!-- Submit -->
-                <div class="pt-4">
-                  <button type="submit" class="w-full bg-yellow-500 text-black/80 font-semibold py-3 rounded-md hover:bg-yellow-400 hover:text-white">
-                    Submit
-                  </button>
-                </div>
-            </form>
+    <div class="form grid grid-flow-row gap-4 rounded-2xl py-10 lg:py-0 lg:mx-5 mt-20 lg:mt-30 lg:mb-20"> 
+      <div class="absolute inset-0 bg-[url(images/front-view-happy-woman-studio.jpg)] bg-cover bg-center"></div>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-10"></div>
+        <div class="form lg:flex lg:py-10 lg:justify-center z-20">
+          
+          <!-- Form Container -->
+          <div id="formContainer" class="max-w-md lg:w-[600px] p-6 mx-6 my-6 lg:mx-0 bg-gray-100 rounded-lg rounded-rb-2xl shadow-lg">
+              <div class="grid grid-flow-row mb-6">
+                <h2 class="text-lg lg:text-2xl font-semibold text-black/65">Get Started</h2>
+                <h3 class="text-black/40">Fill out this form to create a trade</h3>
+              </div>
+              
+              <form class="space-y-5 rounded-sm max-w-md w-full">
+                  <!-- Name -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Name</label>
+                    <input type="text" placeholder="Enter your name" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+              
+                  <!-- Email -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Email</label>
+                    <input type="email" placeholder="Enter your email" class="mt-1 w-full text-gray-500 px-4 py-2 border border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+              
+                  <!-- Phone -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+              
+                  <!-- City -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">City</label>
+                    <select class="mt-1 w-full px-4 py-2 border border-gray-800/70 text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option value="" class="bg-blue-500">Select your city</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Abuja">Abuja</option>
+                      <option value="Port Harcourt">Port Harcourt</option>
+                      <option value="Owerri">Owerri</option>
+                      <option value="Ibadan">Ibadan</option>
+                    </select>
+                  </div>
+              
+                  <!-- Action -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Do you want to swap, sell or take a loan?</label>
+                    <select class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="swap">Swap</option>
+                      <option value="sell">Sell</option>
+                      <option value="loan">Take a Loan</option>
+                    </select>
+                  </div>
+              
+                  <!-- Submit -->
+                  <div class="pt-4">
+                    <button type="submit" class="w-full bg-yellow-500 text-black/80 font-semibold py-3 rounded-md hover:bg-yellow-400 hover:text-white">
+                      Submit
+                    </button>
+                  </div>
+              </form>
+          </div>
         </div>
     </div> 
     <!-- Form end -->
@@ -717,7 +719,7 @@
             scrollTrigger: {
             trigger: "#business-model",
             start: "top 100%",
-            toggleActions: "play reverse play reverse"
+            //toggleActions: "play reverse play reverse"
             }     
       
         });
