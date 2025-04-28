@@ -99,7 +99,7 @@
     </div>
 
     <!--Information elaboration-->
-    <div id="info-elaboration-container" class="info-elaboration-container mt-24 mx-5 mb-20 lg:mt-40 lg:mb-30 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
+    <div id="info-elaboration-container" class="info-elaboration-container overflow-x-hidden mt-24 mx-5 mb-20 lg:mt-40 lg:mb-30 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
       <div class="lg:flex lg:gap-6 gap-3 grid grid-flow-row lg:justify-center items-center">
         <!--Image for small screen-->
         <div class="info-elab-img-1">
@@ -229,7 +229,7 @@
     <!--How it works div end--> 
 
     <!--Business Models-->
-    <section class="bg-gradient-to-br my-20  py-10 lg:pt-10 lg:pb-20 px-6 lg:px-5">
+    <section id="business-model" class="my-20  py-10 lg:pt-10 lg:pb-20 px-6 lg:px-5">
         <div class="text-center mb-14">
           <h2 class="text-lg lg:text-2xl font-semibold opacity-75">
             Our Business Models
@@ -304,7 +304,7 @@
       
 
     <!--Our core values-->
-    <section class="relative h-[120vh] lg:h-[120vh] overflow-hidden mx-4 lg:mx-5 rounded-3xl">
+    <section id="core-values" class="relative h-[120vh] lg:h-[120vh] overflow-hidden mx-4 lg:mx-5 rounded-3xl">
         <!-- Background Layer -->
         <div class="absolute inset-0 bg-[url(images/blue.avif)] bg-cover bg-center"></div>
       
@@ -700,12 +700,40 @@
             y: 180,
             opacity: 0,
             duration: 1.6,
-            stagger: 0.5,
+            stagger: 1,
             scrollTrigger: {
             trigger: ".step",
             start: "top 100%",
             //toggleActions: "play reverse play reverse"
             }     
+        });
+
+         // gsap for our business model
+         gsap.from("#business-model", {
+            x: -180,
+            opacity: 0,
+            duration: 2,
+            stagger: 0.5,
+            scrollTrigger: {
+            trigger: "#business-model",
+            start: "top 100%",
+            toggleActions: "play reverse play reverse"
+            }     
+      
+        });
+
+        // gsap for our core values
+        gsap.from("#core-values", {
+            x: -180,
+            opacity: 0,
+            duration: 2,
+            stagger: 0.5,
+            scrollTrigger: {
+            trigger: "#core-values",
+            start: "top 100%",
+            toggleActions: "play reverse play reverse"
+            }     
+      
         });
         
     </script>
