@@ -304,7 +304,7 @@
       
 
     <!--Our core values-->
-    <section id="core-values" class="relative h-[120vh] lg:h-[120vh] overflow-hidden mx-4 lg:mx-5 rounded-3xl">
+    <section id="core-values" class="relative h-[80vh] overflow-hidden mx-4 lg:mx-5 rounded-3xl">
         <!-- Background Layer -->
         <div class="absolute inset-0 bg-[url(images/blue.avif)] bg-cover bg-center"></div>
       
@@ -312,7 +312,7 @@
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-10"></div>
       
         <!-- Content -->
-        <div class="relative z-20 h-full flex flex-col justify-center items-center text-white text-center px-4 lg:px-20" id="parallax-content">
+        <div class="relative z-20 h-full overflow-x-hidden flex flex-col justify-center items-center text-white text-center px-4 lg:px-20" id="parallax-content">
           <h2 class="text-lg lg:text-2xl font-semibold text-white mb-6">Our Core Values</h2>
           <p class="text-gray-300 max-w-2xl mb-12">
             What guides us in building trust and delivering value in every barter and exchange.
@@ -342,13 +342,13 @@
     <!--Our core values end-->
 
     <!-- Form image and container -->
-    <div class="lg:flex lg:justify-center rounded-3xl lg:mx-5 mx-4 mt-20 lg:mt-30 lg:mb-20 bg-gradient-to-r from-black to-blue-900 pt-4 lg:py-10"> 
+    <div class="form lg:flex lg:justify-center overflow-x-hidden rounded-3xl lg:mx-5 mx-4 mt-20 lg:mt-30 lg:mb-20 bg-gradient-to-r from-black to-blue-900 pt-4 lg:py-10"> 
         
         <div  class="lg:w-1/2 h-full">
             <img src="images/International trade-rafiki.png">
         </div>
         <!-- Form Container -->
-        <div id="formContainer" class="max-w-md w-full p-6 bg-white rounded-2xl shadow-lg">
+        <div id="formContainer" class="form max-w-md w-full p-6 bg-white rounded-2xl shadow-lg">
             <div class="grid grid-flow-row mb-6">
               <h2 class="text-lg lg:text-2xl font-semibold text-black/65">Get Started</h2>
               <h3 class="text-black/40">Fill out this form to create a trade</h3>
@@ -492,10 +492,10 @@
     </div>
 
    <!--footer start-->
-   <footer class=" bg-gradient-to-r from-black to-blue-900 text-white relative py-10">
+   <footer id="footer" class="overflow-x-hidden bg-gradient-to-r from-black to-blue-900 text-white relative py-10">
     <div class="flex justify-center items-center my-30">
       <!--cta text start-->
-      <div class="grid grid-flow-row gap-4 items-center mx-10">
+      <div class="footer-cta overflow-x-hidden grid grid-flow-row gap-4 items-center mx-10">
         <div class="grid grid-flow-row gap-2">
           <h2 class="h-text text-gray-200 text-3xl font-medium text-center tracking-tight flex justify-center">
             Ready to Swap, Sell, or Loan?  
@@ -710,7 +710,7 @@
 
          // gsap for our business model
          gsap.from("#business-model", {
-            x: -180,
+            y: 180,
             opacity: 0,
             duration: 2,
             stagger: 0.5,
@@ -722,20 +722,34 @@
       
         });
 
-        // gsap for our core values
-        gsap.from("#core-values", {
-            x: -180,
+       
+         // gsap for form
+         gsap.from(".form", {
+            y: 180,
             opacity: 0,
             duration: 2,
-            stagger: 0.5,
+            stagger: 1,
             scrollTrigger: {
-            trigger: "#core-values",
+            trigger: ".form",
             start: "top 100%",
-            toggleActions: "play reverse play reverse"
+            //toggleActions: "play reverse play reverse"
             }     
       
         });
         
+         // gsap for footer cta
+         gsap.from(".footer-cta", {
+            x: 200,
+            opacity: 0,
+            duration: 2,
+            stagger: 0.5,
+            scrollTrigger: {
+            trigger: ".footer-cta",
+            start: "top 100%",
+            //toggleActions: "play reverse play reverse"
+            }     
+        });
+
     </script>
 
 <script type="module">
