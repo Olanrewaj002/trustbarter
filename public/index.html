@@ -19,6 +19,15 @@
     href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" 
     crossorigin="anonymous"
     />
+    <style>
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
 </head>
 <body>
   
@@ -164,8 +173,158 @@
         </div>
     </div>
 
+    <!--Products display-->
+    <div class="max-w-7xl mx-auto p-6">
+      <div class="flex space-x-4 overflow-x-auto scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:space-x-0">
+  
+      <!-- Product Card -->
+      <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+        images: [
+          'https://via.placeholder.com/400x300?text=1',
+          'https://via.placeholder.com/400x300?text=2',
+          'https://via.placeholder.com/400x300?text=3',
+          'https://via.placeholder.com/400x300?text=4',
+          'https://via.placeholder.com/400x300?text=5',
+          'https://via.placeholder.com/400x300?text=6'
+        ],
+        currentIndex: 0,
+        prev() {
+          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        },
+        next() {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        },
+        setImage(index) {
+          this.currentIndex = index;
+        }
+      }">
+        <div class="relative">
+          <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+          <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+          <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+          <template x-for="(img, index) in images" :key="index">
+            <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+          </template>
+        </div>
+
+        <div class="mt-4">
+          <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
+          <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
+          <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
+          <p class="text-sm text-gray-500">Location: Lagos</p>
+          <div class="flex items-center mt-2">
+            <input type="checkbox" id="swap" class="mr-2">
+            <label for="swap" class="text-sm text-gray-700">Swap</label>
+          </div>
+          <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+          <button class="mt-4 w-full font-bold text-gray-900 py-2 border rounded-lg hover:bg-yellow-400">Contact Seller</button>
+        </div>
+      </div>
+      
+    <!-- Product Card 2-->
+    <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+      images: [
+        'https://via.placeholder.com/400x300?text=1',
+        'https://via.placeholder.com/400x300?text=2',
+        'https://via.placeholder.com/400x300?text=3',
+        'https://via.placeholder.com/400x300?text=4',
+        'https://via.placeholder.com/400x300?text=5',
+        'https://via.placeholder.com/400x300?text=6'
+      ],
+      currentIndex: 0,
+      prev() {
+        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+      },
+      next() {
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+      },
+      setImage(index) {
+        this.currentIndex = index;
+      }
+    }">
+      <div class="relative">
+        <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+        <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+        <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+      </div>
+
+      <!-- Thumbnails -->
+      <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+        <template x-for="(img, index) in images" :key="index">
+          <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+        </template>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
+        <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
+        <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
+        <p class="text-sm text-gray-500">Location: Lagos</p>
+        <div class="flex items-center mt-2">
+          <label for="swap" class="text-sm text-gray-700">Swap Available</label>
+        </div>
+        <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+        <button class="mt-4 w-full border font-bold text-gray-900 py-2 rounded-lg hover:bg-yellow-400">Contact Seller</button>
+      </div>
+    </div>
+  
+
+      <!-- Product Card 3-->
+      <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+        images: [
+          'https://via.placeholder.com/400x300?text=1',
+          'https://via.placeholder.com/400x300?text=2',
+          'https://via.placeholder.com/400x300?text=3',
+          'https://via.placeholder.com/400x300?text=4',
+          'https://via.placeholder.com/400x300?text=5',
+          'https://via.placeholder.com/400x300?text=6'
+        ],
+        currentIndex: 0,
+        prev() {
+          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        },
+        next() {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        },
+        setImage(index) {
+          this.currentIndex = index;
+        }
+      }">
+        <div class="relative">
+          <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+          <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+          <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+          <template x-for="(img, index) in images" :key="index">
+            <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+          </template>
+        </div>
+
+        <div class="mt-4">
+          <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
+          <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
+          <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
+          <p class="text-sm text-gray-500">Location: Lagos</p>
+          <div class="flex items-center mt-2">
+            <label for="swap" class="text-sm text-gray-700">Swap Available</label>
+          </div>
+          <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+          <button class="mt-4 w-full border font-bold text-gray-900 py-2 rounded-lg hover:bg-yellow-400">Contact Seller</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
     <!--Information elaboration-->
-    <div id="info-elaboration-container" class="info-elaboration-container overflow-x-hidden mt-24 mx-5 mb-20 lg:my-50 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
+    <div id="info-elaboration-container" class="info-elaboration-container overflow-x-hidden mt-20 mx-5 mb-20 lg:my-50 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
       <div class="lg:flex lg:gap-6 gap-3 grid grid-flow-row lg:justify-center items-center">
         <!--Image for small screen-->
         <div class="info-elab-img-1">
@@ -189,6 +348,9 @@
                 sell, or get quick loans using what you already own. No hassle. No delay.
               </h4>
             </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button>
           </div>
         </div>
       </div>
@@ -217,6 +379,9 @@
               </h4>
             </div>
           </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button>
+          </div>
         </div>
           <!--Image for small screen-->
         <div class="elab-image">
@@ -227,34 +392,21 @@
     <!--Information elaboration 2 end-->
       
 
-    <!-- Logo Carousel -->
+    <!-- Logo Carousel 
     <div class="overflow-hidden w-full bg-white my-20 lg:my-40">
       <div class="relative w-full">
-        <div id="carousel-track" class="flex w-max space-x-12">
-          <!-- Repeat these logo items -->
-          <img src="logo1.png" class="h-12 w-auto object-contain" alt="Logo 1" />
-          <img src="logo2.png" class="h-12 w-auto object-contain" alt="Logo 2" />
-          <img src="logo3.png" class="h-12 w-auto object-contain" alt="Logo 3" />
-          <img src="logo4.png" class="h-12 w-auto object-contain" alt="Logo 4" />
-          <img src="logo5.png" class="h-12 w-auto object-contain" alt="Logo 5" />
-          <!-- Duplicate logos for seamless looping -->
-          <img src="logo1.png" class="h-12 w-auto object-contain" alt="Logo 1" />
-          <img src="logo2.png" class="h-12 w-auto object-contain" alt="Logo 2" />
-          <img src="logo3.png" class="h-12 w-auto object-contain" alt="Logo 3" />
-          <img src="logo4.png" class="h-12 w-auto object-contain" alt="Logo 4" />
-          <img src="logo5.png" class="h-12 w-auto object-contain" alt="Logo 5" />
-          <!-- Duplicate logos for seamless looping -->
-          <img src="logo1.png" class="h-12 w-auto object-contain" alt="Logo 1" />
-          <img src="logo2.png" class="h-12 w-auto object-contain" alt="Logo 2" />
-          <img src="logo3.png" class="h-12 w-auto object-contain" alt="Logo 3" />
-          <img src="logo4.png" class="h-12 w-auto object-contain" alt="Logo 4" />
-          <img src="logo5.png" class="h-12 w-auto object-contain" alt="Logo 5" />
+        <div id="carousel-track" class="flex w-max space-x-40">
+          <img src="images/front-view-happy-woman-studio.jpg" class="h-12 w-auto object-contain" alt="Logo 1" />
+          <img src="images/front-view-happy-woman-studio.jpg" class="h-20 w-auto object-contain" alt="Logo 2" />
+          <img src="images/front-view-happy-woman-studio.jpg" class="h-20 w-auto object-contain" alt="Logo 3" />
+          <img src="images/front-view-happy-woman-studio.jpg" class="h-20 w-auto object-contain" alt="Logo 4" />
+          <img src="images/front-view-happy-woman-studio.jpg" class="h-20 w-auto object-contain" alt="Logo 5" />
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!--How it works div start-->
-    <div class="lg:flex grid lg:gap-6 gap-3 lg:mx-5 lg:justify-center lg:mb-50 lg:mb-30">
+    <div class="lg:flex grid lg:gap-6 gap-3 lg:mx-5 lg:justify-center lg:mt-50 lg:mb-30">
         <div class="grid gap-12">
             <!-- Header -->
             <div class="flex justify-center">
@@ -726,7 +878,6 @@
             qtnFour.classList.toggle("font-bold")
             qtnFour.classList.toggle("text-[#550000]")
         }
-        
 
         // gsap for hero text
         gsap.from(".h-text", {
@@ -880,7 +1031,33 @@
 
     </script>
 
-<script type="module">
+    <script>
+      document.querySelectorAll('[data-product]').forEach(card => {
+        const thumbs = Array.from(card.querySelectorAll('.thumb'));
+        const imageDisplay = card.querySelector('.image-display');
+        const images = thumbs.map(thumb => thumb.src);
+        let index = 0;
+
+        const updateImage = i => {
+          imageDisplay.src = images[i];
+          index = i;
+        };
+
+        thumbs.forEach((thumb, i) => {
+          thumb.addEventListener('click', () => updateImage(i));
+        });
+
+        card.querySelector('.prev-btn').addEventListener('click', () => {
+          updateImage((index - 1 + images.length) % images.length);
+        });
+
+        card.querySelector('.next-btn').addEventListener('click', () => {
+          updateImage((index + 1) % images.length);
+        });
+      });
+      </script>
+
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
