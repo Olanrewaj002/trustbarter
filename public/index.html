@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon " href="images/trustbarter no words logo.png"/>
     <title>Trustbarter</title>
+     <!-- #keywords -->
+     <meta name="keywords" content="Declutter, Sell, Swap, Used items," />
+     <!-- #description -->
+     <meta name="description" content="Sell, Swap, and Loan" />
+     <!-- #author -->
+     <meta name="author" content="Olanrewaju Paul" />
+
+    <!-- CSS Dependencies and Scripts-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="./output.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+    <script src="gsap-animation.js" defer></script>
+    <script src="salesCards.js" defer></script>
+    <script src="faq.js" defer></script>
     <!-- Firebase App (the core Firebase SDK) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
     <!-- Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+    <script type="module" src="firebase-form.js"></script>  
     <link 
     rel="stylesheet" 
     href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" 
@@ -25,7 +37,7 @@
       }
       .scrollbar-hide {
         -ms-overflow-style: none;
-        scrollbar-width: none;
+        scrollbar-width: none;            
       }
     </style>
 </head>
@@ -36,7 +48,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-4">
     <div class="flex justify-between items-center py-4">
       <!-- Logo -->
-      <a href="index.html" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-40"></a>
+      <a href="index.html" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-32 lg:w-40"></a>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex space-x-12">
@@ -133,7 +145,7 @@
   
 
     <!---->
-    <div id="services" class="services grid grid-cols-1 sm:grid-cols-3 gap-10 lg:mt-30 mb-16 lg:mb-50 px-6">
+    <div id="services" class="services grid grid-cols-1 sm:grid-cols-3 gap-10 lg:mt-30 mb-28 lg:mb-50 px-6">
         <!-- Card -->
         <div class="flex flex-col items-center text-center gap-4">
           <div class="bg-yellow-400 p-4 rounded-full">
@@ -174,11 +186,14 @@
     </div>
 
     <!--Products display-->
-    <div class="max-w-7xl mx-auto p-6">
-      <div class="flex space-x-4 overflow-x-auto scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:space-x-0">
+    <div id="sellers-items" class="max-w-7xl mx-auto p-6 my-20">
+      <!--<div class="flex justify-center lg:mb-32 mb-20 bg-yellow-400 rounded-lg">
+        <h2 class="text-xl lg:text-2xl lg:text- font-semibold text-black/80 tracking-wide">Sellers Items</h2>
+      </div>-->
+      <div class="flex space-x-4 overflow-x-auto scrollbar-hide lg:grid-cols-3 md:space-x-0">
   
       <!-- Product Card -->
-      <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+      <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto"x-data="{
         images: [
           'https://via.placeholder.com/400x300?text=1',
           'https://via.placeholder.com/400x300?text=2',
@@ -215,18 +230,32 @@
           <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
           <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
           <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
-          <p class="text-sm text-gray-500">Location: Lagos</p>
+          <p class="text-sm text-gray-500 mt-1">Location: Lagos</p>
           <div class="flex items-center mt-2">
-            <input type="checkbox" id="swap" class="mr-2">
-            <label for="swap" class="text-sm text-gray-700">Swap</label>
+            <label for="swap" class="text-sm text-gray-700">Swap Available</label>
           </div>
           <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
-          <button class="mt-4 w-full font-bold text-gray-900 py-2 border rounded-lg hover:bg-yellow-400">Contact Seller</button>
+          <!-- Buttons -->
+          <div class="grid grid-flow-row">
+            <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+              Loan
+            </button>-->
+            <!-- Contact Seller Button -->
+            <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg hover:bg-yellow-400 flex items-center justify-center gap-2">
+              <i class="fas fa-phone"></i> Contact Seller
+            </button>
+          
+            <!-- Hidden Contact Section -->
+            <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+              <span class="sellerInfo font-bold">+234 812 345 6789</span>
+              <button class="copyContact ml-2 text-blue-600 underline text-xs">Copy</button>
+            </div>
+          </div>
         </div>
       </div>
       
     <!-- Product Card 2-->
-    <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+    <div class="bg-white/60 rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
       images: [
         'https://via.placeholder.com/400x300?text=1',
         'https://via.placeholder.com/400x300?text=2',
@@ -263,18 +292,34 @@
         <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
         <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
         <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
-        <p class="text-sm text-gray-500">Location: Lagos</p>
+        <p class="text-sm text-gray-500 mt-1">Location: Lagos</p>
         <div class="flex items-center mt-2">
           <label for="swap" class="text-sm text-gray-700">Swap Available</label>
         </div>
         <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
-        <button class="mt-4 w-full border font-bold text-gray-900 py-2 rounded-lg hover:bg-yellow-400">Contact Seller</button>
+        <!-- Buttons -->
+        <div class="grid grid-flow-row">
+          <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+            Loan
+          </button>-->
+        
+          <!-- Contact Seller Button -->
+          <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg hover:bg-yellow-400 flex items-center justify-center gap-2">
+            <i class="fas fa-phone"></i> Contact Seller
+          </button>
+        
+          <!-- Hidden Contact Section -->
+          <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+            <span class="sellerNumber font-bold">+234 812 345 6789</span>
+            <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
+          </div>
+        </div>
       </div>
     </div>
   
 
       <!-- Product Card 3-->
-      <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+      <div class="bg-white/60 rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
         images: [
           'https://via.placeholder.com/400x300?text=1',
           'https://via.placeholder.com/400x300?text=2',
@@ -311,20 +356,39 @@
           <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
           <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
           <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
-          <p class="text-sm text-gray-500">Location: Lagos</p>
+          <p class="text-sm text-gray-500 mt-1">Location: Lagos</p>
           <div class="flex items-center mt-2">
             <label for="swap" class="text-sm text-gray-700">Swap Available</label>
           </div>
           <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
-          <button class="mt-4 w-full border font-bold text-gray-900 py-2 rounded-lg hover:bg-yellow-400">Contact Seller</button>
+          <!-- Buttons -->
+          <div class="grid grid-flow-row">
+            <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+              Loan
+            </button>-->
+          
+            <!-- Contact Seller Button -->
+            <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg hover:bg-yellow-400 flex items-center justify-center gap-2">
+              <i class="fas fa-phone"></i> Contact Seller
+            </button>
+          
+            <!-- Hidden Contact Section -->
+            <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+              <span class="sellerNumber font-bold">+234 812 345 6789</span>
+              <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
+            </div>
+          </div>
         </div>
       </div>
+      </div>
+      <div class="flex justify-center mt-10 lg:mt-16">
+        <h3 class="text-yellow-400 font-bold text-sm">See more items</h3>
       </div>
     </div>
 
 
     <!--Information elaboration-->
-    <div id="info-elaboration-container" class="info-elaboration-container overflow-x-hidden mt-20 mx-5 mb-20 lg:my-50 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
+    <div id="info-elaboration-container" class="info-elaboration-container overflow-x-hidden mt-12 mx-5 mb-20 lg:mb-40 lg:mt-32 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
       <div class="lg:flex lg:gap-6 gap-3 grid grid-flow-row lg:justify-center items-center">
         <!--Image for small screen-->
         <div class="info-elab-img-1">
@@ -406,7 +470,7 @@
     </div>-->
 
     <!--How it works div start-->
-    <div class="lg:flex grid lg:gap-6 gap-3 lg:mx-5 lg:justify-center lg:mt-50 lg:mb-30">
+    <div class="lg:flex grid lg:gap-6 gap-3 lg:mx-5 lg:justify-center lg:my-50">
         <div class="grid gap-12">
             <!-- Header -->
             <div class="flex justify-center">
@@ -819,293 +883,9 @@
     </h4>
   </div>
 
-    <script>
-        //variables for question one divs
-        let toggleDown=document.getElementById("drop-down")
-        let faqStyle1 = document.getElementById("faq-style1")
-        let qtnOne = document.getElementById("question-1")
 
-        //variables for question two divs
-        let faqStyle2 = document.getElementById("faq-style2")
-        let qtnTwo = document.getElementById("question-2")
-        let toggleDown2 = document.getElementById("drop-down2")
-
-        //variables for faq three divs
-        let faqStyle3 = document.getElementById("faq-style3")
-        let qtnThree = document.getElementById("question-3")
-        let toggleDown3 = document.getElementById("drop-down3")
-
-        //variables for faq three divs
-        let faqStyle4 = document.getElementById("faq-style4")
-        let qtnFour = document.getElementById("question-4")
-        let toggleDown4 = document.getElementById("drop-down4")
-
-        //variables for faq three divs
-        let faqStyle5 = document.getElementById("faq-style5")
-        let qtnFive = document.getElementById("question-5")
-        let toggleDown5 = document.getElementById("drop-down5")
-
-        //functions section
-        
-        //faq one function
-        function openInfo() {
-            toggleDown.classList.toggle("hidden")
-            faqStyle1.classList.toggle("rounded-sm"), ("bg-none")
-            qtnOne.classList.toggle("font-bold")
-            qtnOne.classList.toggle("text-[#550000]")
-        }
-
-        //faq two function
-        function openInfo2() {
-            toggleDown2.classList.toggle("hidden")
-            faqStyle2.classList.toggle("rounded-sm"), ("bg-none")
-            qtnTwo.classList.toggle("font-bold")
-            qtnTwo.classList.toggle("text-[#550000]")
-        }
-
-        //faq three function
-        function openInfo3() {
-            toggleDown3.classList.toggle("hidden")
-            faqStyle3.classList.toggle("rounded-sm"), ("bg-none")
-            qtnThree.classList.toggle("font-bold")
-            qtnThree.classList.toggle("text-[#550000]")
-        }
-
-        //faq three function
-        function openInfo4() {
-            toggleDown4.classList.toggle("hidden")
-            faqStyle4.classList.toggle("rounded-sm"), ("bg-none")
-            qtnFour.classList.toggle("font-bold")
-            qtnFour.classList.toggle("text-[#550000]")
-        }
-
-        // gsap for hero text
-        gsap.from(".h-text", {
-            y: 100,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.2,
-            scrollTrigger: {
-            trigger: "#hero-content",
-            start: "top 100%",
-            }
-        });
-
-        // gsap for hero img
-        gsap.from(".hero-img", {
-            y: 200,
-            opacity: 1,
-            duration: 6,
-            ease: "power3.out"
-        });
-
-        // gsap for form
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.to("#formContainer", {
-            scrollTrigger: {
-            trigger: "#formContainer",
-            start: "top 80%", // when top of the container hits 80% of the viewport
-            toggleActions: "play reverse play reverse"
-            },
-            opacity: 80,
-            y: 0,
-            duration: 2,
-            ease: "power2.out"
-        }); 
-
-        // gsap for services
-        gsap.from(".services", {
-            y: 180,
-            opacity: 0,
-            duration: 1.6,
-            stagger: 0.2,
-            scrollTrigger: {
-            trigger: "#services",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-        });
-
-        // gsap for information elaboration section
-        gsap.from(".info-elab-text-1", {
-            x: 200,
-            opacity: 0,
-            duration: 1.6,
-            stagger: 0.2,
-            scrollTrigger: {
-            trigger: ".info-elab-text-1",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-        });
-
-         // gsap for information elaboration section image
-         gsap.from(".info-elab-img-1", {
-            x: -200,
-            opacity: 0,
-            duration: 1.6,
-            scrollTrigger: {
-            trigger: ".info-elab-img-1",
-            //toggleActions: "play reverse play reverse"
-            }
-        });
-
-        // gsap for information elaboration section 2
-        gsap.from(".info-elaboration-container-2", {
-            y: 200,
-            opacity: 0,
-            duration: 1.6,
-            stagger: 0.5,
-            scrollTrigger: {
-            trigger: "#info-elaboration-container-2",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-        });
-
-        // gsap for carousel
-        const track = document.getElementById("carousel-track");
-        gsap.to(track, {
-          x: () => `-=${track.offsetWidth / 2}`, // move by half the total width
-          duration: 20,
-          ease: "none",
-          repeat: -1,
-        });
-
-
-        // gsap for steps are easy
-        gsap.from(".step", {
-            y: 180,
-            opacity: 0,
-            duration: 1.6,
-            stagger: 0.2,
-            scrollTrigger: {
-            trigger: ".step",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-        });
-
-         // gsap for our business model
-         gsap.from("#business-model", {
-            y: 200,
-            opacity: 0,
-            duration: 2,
-            stagger: 0.5,
-            scrollTrigger: {
-            trigger: "#business-model",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-      
-        });
-
+      <script type="module">
        
-         // gsap for form
-         gsap.from(".form", {
-            y: 180,
-            opacity: 0,
-            duration: 2,
-            //stagger: 0.5,
-            scrollTrigger: {
-            trigger: ".form",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-      
-        });
-        
-         // gsap for footer cta
-         gsap.from(".footer-cta", {
-            x: 200,
-            opacity: 0,
-            duration: 2,
-            stagger: 0.5,
-            scrollTrigger: {
-            trigger: ".footer-cta",
-            start: "top 100%",
-            //toggleActions: "play reverse play reverse"
-            }     
-        });
-
-    </script>
-
-    <script>
-      document.querySelectorAll('[data-product]').forEach(card => {
-        const thumbs = Array.from(card.querySelectorAll('.thumb'));
-        const imageDisplay = card.querySelector('.image-display');
-        const images = thumbs.map(thumb => thumb.src);
-        let index = 0;
-
-        const updateImage = i => {
-          imageDisplay.src = images[i];
-          index = i;
-        };
-
-        thumbs.forEach((thumb, i) => {
-          thumb.addEventListener('click', () => updateImage(i));
-        });
-
-        card.querySelector('.prev-btn').addEventListener('click', () => {
-          updateImage((index - 1 + images.length) % images.length);
-        });
-
-        card.querySelector('.next-btn').addEventListener('click', () => {
-          updateImage((index + 1) % images.length);
-        });
-      });
       </script>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyBrJzSs1f97vBVTvZj8qMP8VHNsXqCOQg0",
-        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-        projectId: "trustbarter-4763c",
-      // optional: storageBucket, messagingSenderId, appId
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const form = document.querySelector("form");
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const name = form.querySelector('input[type="text"]').value.trim();
-        const email = form.querySelector('input[type="email"]').value.trim();
-        const phone = form.querySelector('input[type="tel"]').value.trim();
-        const city = form.querySelectorAll('select')[0].value;
-        const action = form.querySelectorAll('select')[1].value;
-
-        if (!name || !email || !phone || !city || !action) {
-          alert("Please fill out all fields.");
-          return;
-        }
-
-        try {
-          await addDoc(collection(db, "formSubmissions"), {
-            name,
-            email,
-            phone,
-            city,
-            action,
-            submittedAt: new Date()
-          });
-          alert("Form submitted successfully!");
-          form.reset();
-        } catch (error) {
-          console.error("Submission error:", error);
-          alert("Failed to submit form. Please try again.");
-        }
-      });
-    });
-  </script>
-
 </body>
 </html>
