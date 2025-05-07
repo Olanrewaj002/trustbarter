@@ -121,6 +121,19 @@ gsap.from(".step", {
     }     
 });
 
+// gsap for about us
+gsap.from("#about", {
+    y: 180,
+    opacity: 0,
+    duration: 1.6,
+    stagger: 0.2,
+    scrollTrigger: {
+    trigger: "#about",
+    start: "top 100%",
+    //toggleActions: "play reverse play reverse"
+    }     
+});
+
  // gsap for our business model
  gsap.from("#business-model", {
     y: 200,
@@ -133,6 +146,19 @@ gsap.from(".step", {
     //toggleActions: "play reverse play reverse"
     }     
 
+});
+
+// gsap for core values
+gsap.from("#core-values", {
+    y: 180,
+    opacity: 0,
+    duration: 1.6,
+    stagger: 0.2,
+    scrollTrigger: {
+    trigger: "#core-values",
+    start: "top 100%",
+    //toggleActions: "play reverse play reverse"
+    }     
 });
 
 
