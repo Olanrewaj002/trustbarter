@@ -43,18 +43,18 @@
       }
     </style>
 </head>
-<body>
+<body id="home">
   
 <!--Nav bar-->
 <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-black shadow-md" x-data="{ open: false }">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-4">
     <div class="flex justify-between items-center py-4">
       <!-- Logo -->
-      <a href="index.html" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-32 lg:w-40"></a>
+      <a href="#home" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-32 lg:w-40"></a>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex space-x-12">
-        <a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Home</a>
+        <a href="#home" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Home</a>
         <a href="#about" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">About</a>
         <a href="#sellers-items" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Deals</a>
         <!--<a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Blog</a>
@@ -63,8 +63,8 @@
 
       <!-- Desktop Buttons -->
       <div class="hidden md:flex items-center space-x-4 lg:flex gap-4">
-        <button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button>
-        <a href="#footer" class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Contact Us</a>
+        <a href="#form"><button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button></a>
+        <a href="#contact" class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Contact Us</a>
       </div>
 
       <!-- Hamburger -->
@@ -101,15 +101,15 @@
   >
     <!-- Links -->
     <nav class="flex flex-col mt-10 lg:mt-0 space-y-6 justify-center items-center">
-      <a href="#" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">Home</a>
-      <a href="#about" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">About</a>
-      <a href="#sellers-items" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">Deals</a>
+      <a href="#home" @click="open = false" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">Home</a>
+      <a href="#about" @click="open = false" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">About</a>
+      <a href="#sellers-items" @click="open = false" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">Deals</a>
     </nav>
 
     <!-- Buttons -->
     <div class="flex flex-col gap-4 mt-10 mb-6">
-      <button class="w-full bg-yellow-400 py-4 text-black/80 rounded-lg">Get Started</button>
-      <a href="#footer" class="w-full border border-indigo-600/20 text-black/80 bg-white/50 py-4 rounded-lg">Contact Us</a>
+      <a href="#get-started" @click="open = false"><button class="w-full bg-yellow-400 py-4 text-black/80 rounded-lg">Get Started</button></a>
+      <a href="#contact" @click="open = false" class="w-full text-center border border-indigo-600/20 text-black/80 bg-white/50 py-4 rounded-lg">Contact Us</a>
     </div>
 
     <!-- Social Icons -->
@@ -197,14 +197,10 @@
       <div class="flex gap-4 lg:gap-12 overflow-x-auto scrollbar-hide lg:grid-cols-3 md:space-x-0">
   
       <!-- Product Card -->
+       <!-- IMAGES ARRAY FIRST ON TOP -->
       <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto"x-data="{
         images: [
-          'https://via.placeholder.com/400x300?text=1',
-          'https://via.placeholder.com/400x300?text=2',
-          'https://via.placeholder.com/400x300?text=3',
-          'https://via.placeholder.com/400x300?text=4',
-          'https://via.placeholder.com/400x300?text=5',
-          'https://via.placeholder.com/400x300?text=6'
+          '/public/images/gas.jpg',
         ],
         currentIndex: 0,
         prev() {
@@ -262,11 +258,6 @@
     <div class="bg-white/60 rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
       images: [
         'https://via.placeholder.com/400x300?text=1',
-        'https://via.placeholder.com/400x300?text=2',
-        'https://via.placeholder.com/400x300?text=3',
-        'https://via.placeholder.com/400x300?text=4',
-        'https://via.placeholder.com/400x300?text=5',
-        'https://via.placeholder.com/400x300?text=6'
       ],
       currentIndex: 0,
       prev() {
@@ -426,7 +417,7 @@
     <!--Information elaboration end-->
 
     <!--Information elaboration 2-->
-    <div id="info-elaboration-container-2" class="info-elaboration-container-2 mt-24 mx-5 mb-20 lg:mt-40 lg:mb-30 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
+    <div id="info-elaboration-container-2" class="info-elaboration-container-2 mt-20 mx-5 mb-20 lg:mt-40 lg:mb-30 bg-white drop-shadow-lg lg:drop-shadow-none py-4 px-4 lg:py-0 lg:px-0 rounded-md">
       <div class="lg:flex lg:gap-6 gap-3 grid grid-flow-row lg:justify-center items-center">
         <div class="grid grid-flow-row gap-3 lg:gap-6 w-fit">
           <div class="w-fit">
@@ -479,7 +470,7 @@
             <!-- Header -->
             <div class="flex justify-center">
                 <h1 class="step text-lg lg:text-2xl font-bold opacity-75 tracking-wide">
-                    The Steps Are Easy!
+                   How it works
                 </h1>
             </div>
         
@@ -672,14 +663,14 @@
 
     <!-- Form image and container -->
    <section id="get-started" class="rounded-3xl">
-    <div class="form grid grid-flow-row gap-4 rounded-2xl md:flex md:justify-center py-10 lg:py-0 lg:mx-5 mt-20 lg:mt-30 lg:mb-20"> 
+    <div class="form grid grid-flow-row gap-4 rounded-2xl py-10 lg:py-0 lg:mx-5 mt-20 lg:mt-30 lg:mb-20"> 
       <div class="absolute inset-0 bg-[url(images/portrait-smiley-man-with-call-me-sign.jpg)] bg-cover bg-center"></div>
         <!-- Overlay -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-10"></div>
         <div class="form lg:flex lg:py-10 lg:justify-center z-20">
           
           <!-- Form Container -->
-          <div id="formContainer" class="max-w-md lg:w-[600px] p-6 mx-6 my-6 lg:mx-0 bg-gray-100 rounded-lg rounded-rb-2xl shadow-lg">
+          <div id="formContainer" class="max-w-md lg:w-[600px] p-6 mx-6 my-6 lg:mx-0 bg-gray-100 rounded-lg rounded-rb-2xl items-center shadow-lg">
               <div class="grid grid-flow-row mb-6">
                 <h2 class="text-lg lg:text-2xl font-semibold text-black/65">Get Started</h2>
                 <h3 class="text-black/40">Fill out this form to create a trade</h3>
@@ -875,7 +866,7 @@
       </div>
   
       <!-- Links Column 2 -->
-      <div class="grid grid-flow-row gap-4">
+      <div id="contact" class="grid grid-flow-row gap-4">
         <div>
           <h2 class="text-xl font-semibold text-white opacity-80">
             Contact us
