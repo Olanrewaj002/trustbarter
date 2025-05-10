@@ -14,9 +14,9 @@ gsap.from(".h-text", {
 
 // gsap for hero img
 gsap.from(".hero-img", {
-    y: 200,
-    opacity: 1,
-    duration: 6,
+    y: 100,
+    opacity: 0,
+    duration: 2,
     ease: "power3.out"
 });
 
