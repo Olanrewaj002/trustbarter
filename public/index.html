@@ -43,7 +43,7 @@
       }
     </style>
 </head>
-<body id="home">
+<body class="absolute">
   
 <!--Nav bar-->
 <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-black shadow-md" x-data="{ open: false }">
@@ -63,7 +63,7 @@
 
       <!-- Desktop Buttons -->
       <div class="hidden md:flex items-center space-x-4 lg:flex gap-4">
-        <a href="#form"><button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button></a>
+        <a href="#get-started"><button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button></a>
         <a href="#contact" class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Contact Us</a>
       </div>
 
@@ -185,196 +185,6 @@
           </p>
         </div>
     </div>
-
-    <!--Products display-->
-    <section id="sellers-items" class="max-w-7xl mx-auto p-6 my-20 lg:mt-20 lg:mb-40">
-      <div class="flex justify-center mb-10 lg:mb-20">
-        <h3 class="text-2xl font-bold text-center text-gray-800">Sellers Items</h3>
-      </div>
-      <!--<div class="flex justify-center lg:mb-32 mb-20 bg-yellow-400 rounded-lg">
-        <h2 class="text-xl lg:text-2xl lg:text- font-semibold text-black/80 tracking-wide">Sellers Items</h2>
-      </div>-->
-      <div class="flex gap-4 lg:gap-12 overflow-x-auto scrollbar-hide lg:grid-cols-3 md:space-x-0">
-  
-      <!-- Product Card -->
-       <!-- IMAGES ARRAY FIRST ON TOP -->
-      <div class="bg-white rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto"x-data="{
-        images: [
-          'images/gas.jpg',
-        ],
-        currentIndex: 0,
-        prev() {
-          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-        },
-        next() {
-          this.currentIndex = (this.currentIndex + 1) % this.images.length;
-        },
-        setImage(index) {
-          this.currentIndex = index;
-        }
-      }">
-        <div class="relative">
-          <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
-          <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
-          <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
-        </div>
-
-        <!-- Thumbnails -->
-        <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
-          <template x-for="(img, index) in images" :key="index">
-            <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
-          </template>
-        </div>
-
-        <div class="mt-4">
-          <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
-          <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
-          <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
-          <p class="text-sm text-gray-500 mt-1">Location: Lagos</p>
-          <div class="flex items-center mt-2">
-            <label for="swap" class="text-sm text-gray-700">Swap Available</label>
-          </div>
-          <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
-          <!-- Buttons -->
-          <div class="grid grid-flow-row">
-            <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
-              Loan
-            </button>-->
-            <!-- Contact Seller Button -->
-            <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
-              <i class="fas fa-phone"></i> Contact Seller
-            </button>
-          
-            <!-- Hidden Contact Section -->
-            <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
-              <span class="sellerInfo font-bold">+234 812 345 6789</span>
-              <button class="copyContact ml-2 text-blue-600 underline text-xs">Copy</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-    <!-- Product Card 2-->
-    <div class="bg-white/60 rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
-      images: [
-        'images/fridge.webp',
-      ],
-      currentIndex: 0,
-      prev() {
-        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-      },
-      next() {
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
-      },
-      setImage(index) {
-        this.currentIndex = index;
-      }
-    }">
-      <div class="relative">
-        <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
-        <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
-        <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
-      </div>
-
-      <!-- Thumbnails -->
-      <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
-        <template x-for="(img, index) in images" :key="index">
-          <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
-        </template>
-      </div>
-
-      <div class="mt-4">
-        <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
-        <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
-        <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
-        <p class="text-sm text-gray-500 mt-1">Location: Lagos</p>
-        <div class="flex items-center mt-2">
-          <label for="swap" class="text-sm text-gray-700">Swap Available</label>
-        </div>
-        <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
-        <!-- Buttons -->
-        <div class="grid grid-flow-row">
-          <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
-            Loan
-          </button>-->
-        
-          <!-- Contact Seller Button -->
-          <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
-            <i class="fas fa-phone"></i> Contact Seller
-          </button>
-        
-          <!-- Hidden Contact Section -->
-          <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
-            <span class="sellerNumber font-bold">+234 812 345 6789</span>
-            <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-
-      <!-- Product Card 3-->
-      <div class="bg-white/60 rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
-        images: [
-        'images/aircon.png',
-        ],
-        currentIndex: 0,
-        prev() {
-          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-        },
-        next() {
-          this.currentIndex = (this.currentIndex + 1) % this.images.length;
-        },
-        setImage(index) {
-          this.currentIndex = index;
-        }
-      }">
-        <div class="relative">
-          <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
-          <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
-          <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
-        </div>
-
-        <!-- Thumbnails -->
-        <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
-          <template x-for="(img, index) in images" :key="index">
-            <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
-          </template>
-        </div>
-
-        <div class="mt-4">
-          <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
-          <p class="text-sm text-gray-600 mt-1">Short description of the product goes here.</p>
-          <p class="text-indigo-600 font-bold mt-2">₦15,000</p>
-          <p class="text-sm text-gray-500 mt-1">Location: Lagos</p>
-          <div class="flex items-center mt-2">
-            <label for="swap" class="text-sm text-gray-700">Swap Available</label>
-          </div>
-          <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
-          <!-- Buttons -->
-          <div class="grid grid-flow-row">
-            <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
-              Loan
-            </button>-->
-          
-            <!-- Contact Seller Button -->
-            <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
-              <i class="fas fa-phone"></i> Contact Seller
-            </button>
-          
-            <!-- Hidden Contact Section -->
-            <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
-              <span class="sellerNumber font-bold">+234 812 345 6789</span>
-              <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      <div class="flex justify-center mt-10 lg:mt-16">
-        <h3 class="text-yellow-400 font-bold text-sm">See more items</h3>
-      </div>
-    </section>
 
 
     <!--Information elaboration-->
@@ -658,10 +468,10 @@
 
     <!-- Form image and container -->
    <section id="get-started" class="rounded-3xl">
-    <div class="form grid grid-flow-row gap-4 rounded-2xl py-10 lg:py-0 lg:mx-5 mt-20 lg:mt-30 lg:mb-20"> 
-      <div class="absolute inset-0 bg-[url(images/portrait-smiley-man-with-call-me-sign.jpg)] bg-cover bg-center"></div>
+    <div class="form grid grid-flow-row gap-4 rounded-3xl py-10 lg:py-0 lg:mx-5 mt-20 lg:mt-30 lg:mb-20"> 
+      <div class="absolute rounded-3xl inset-0 bg-[url(images/portrait-smiley-man-with-call-me-sign.jpg)] bg-cover bg-center"></div>
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-10"></div>
+        <div class="absolute inset-0 rounded-3xl bg-black/60 backdrop-blur-sm z-10"></div>
         <div class="form lg:flex lg:py-10 lg:justify-center z-20">
           
           <!-- Form Container -->

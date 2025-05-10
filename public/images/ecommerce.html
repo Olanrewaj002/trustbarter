@@ -1,0 +1,248 @@
+<<!--Products display-
+    <section id="sellers-items" class="max-w-auto mx-auto p-6 my-20 lg:mt-20 lg:mb-40">
+      <div class="flex justify-center mb-10 lg:mb-20">
+        <h3 class="text-2xl font-bold text-center text-gray-800">Sellers Items</h3>
+      </div>
+      <!-<div class="flex justify-center lg:mb-32 mb-20 bg-yellow-400 rounded-lg">
+        <h2 class="text-xl lg:text-2xl lg:text- font-semibold text-black/80 tracking-wide">Sellers Items</h2>
+      </div>-->
+      <div class="flex lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  
+        <!-- Product Card -->
+         <!-- IMAGES ARRAY FIRST ON TOP -->
+        <div class="bg-white rounded-lg p-4 w-80 flex-shrink-0 md:w-auto"x-data="{
+          images: [
+            '/public/images/gas.jpg',
+          ],
+          currentIndex: 0,
+          prev() {
+            this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+          },
+          next() {
+            this.currentIndex = (this.currentIndex + 1) % this.images.length;
+          },
+          setImage(index) {
+            this.currentIndex = index;
+          }
+        }">
+          <div class="relative">
+            <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+            <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+            <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+          </div>
+  
+          <!-- Thumbnails -->
+          <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+            <template x-for="(img, index) in images" :key="index">
+              <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+            </template>
+          </div>
+  
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-800">Table-top gas burner</h3>
+            <p class="text-sm text-gray-600 mt-1">Neatly used gas burner available for sale.</p>
+            <p class="text-indigo-600 font-bold mt-2">₦65,000</p>
+            <p class="text-sm text-gray-500 mt-1">Location: Agege</p>
+            <div class="flex items-center mt-2">
+              <label for="swap" class="text-sm text-gray-700">No Swap</label>
+            </div>
+            <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+            <!-- Buttons -->
+            <div class="grid grid-flow-row">
+              <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+                Loan
+              </button>-->
+              <!-- Contact Seller Button -->
+              <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
+                <i class="fas fa-phone"></i> Contact Seller
+              </button>
+            
+              <!-- Hidden Contact Section -->
+              <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+                <span class="sellerInfo font-bold">+234 812 345 6789</span>
+                <button class="copyContact ml-2 text-blue-600 underline text-xs">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      <!-- Product Card 2-->
+      <div class="bg-white/60 rounded-lg p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+        images: [
+          '/public/images/fridge.webp',
+        ],
+        currentIndex: 0,
+        prev() {
+          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        },
+        next() {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        },
+        setImage(index) {
+          this.currentIndex = index;
+        }
+      }">
+        <div class="relative">
+          <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+          <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+          <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+        </div>
+  
+        <!-- Thumbnails -->
+        <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+          <template x-for="(img, index) in images" :key="index">
+            <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+          </template>
+        </div>
+  
+        <div class="mt-4">
+          <h3 class="text-lg font-semibold text-gray-800">Samsung two door refridgerator</h3>
+          <p class="text-sm text-gray-600 mt-1">Neatly used refridgerator available for sale.</p>
+          <p class="text-indigo-600 font-bold mt-2">800,000</p>
+          <p class="text-sm text-gray-500 mt-1">Location: Abule-Egba</p>
+          <div class="flex items-center mt-2">
+            <label for="swap" class="text-sm text-gray-700">No Swap</label>
+          </div>
+          <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+          <!-- Buttons -->
+          <div class="grid grid-flow-row">
+            <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+              Loan
+            </button>-->
+          
+            <!-- Contact Seller Button -->
+            <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
+              <i class="fas fa-phone"></i> Contact Seller
+            </button>
+          
+            <!-- Hidden Contact Section -->
+            <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+              <span class="sellerNumber font-bold">+234 812 345 6789</span>
+              <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  
+        <!-- Product Card 3-->
+        <div class="bg-white/60 rounded-lg p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+          images: [
+          '/public/images/aircon.png',
+          ],
+          currentIndex: 0,
+          prev() {
+            this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+          },
+          next() {
+            this.currentIndex = (this.currentIndex + 1) % this.images.length;
+          },
+          setImage(index) {
+            this.currentIndex = index;
+          }
+        }">
+          <div class="relative">
+            <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+            <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+            <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+          </div>
+  
+          <!-- Thumbnails -->
+          <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+            <template x-for="(img, index) in images" :key="index">
+              <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+            </template>
+          </div>
+  
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-800">Scanfrost Airconditioner</h3>
+            <p class="text-sm text-gray-600 mt-1">Neatly used airconditioner for sale or swap.</p>
+            <p class="text-indigo-600 font-bold mt-2">₦450,000</p>
+            <p class="text-sm text-gray-500 mt-1">Location: Ikeja</p>
+            <div class="flex items-center mt-2">
+              <label for="swap" class="text-sm text-gray-700">Swap Available</label>
+            </div>
+            <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+            <!-- Buttons -->
+            <div class="grid grid-flow-row">
+              <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+                Loan
+              </button>-->
+            
+              <!-- Contact Seller Button -->
+              <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
+                <i class="fas fa-phone"></i> Contact Seller
+              </button>
+            
+              <!-- Hidden Contact Section -->
+              <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+                <span class="sellerNumber font-bold">+234 812 345 6789</span>
+                <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Product Card 4-->
+        <div class="bg-white/60 rounded-lg shadow-md p-4 w-80 flex-shrink-0 md:w-auto" x-data="{
+          images: [
+          '/public/images/wardrobe.jpg',
+          ],
+          currentIndex: 0,
+          prev() {
+            this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+          },
+          next() {
+            this.currentIndex = (this.currentIndex + 1) % this.images.length;
+          },
+          setImage(index) {
+            this.currentIndex = index;
+          }
+        }">
+          <div class="relative">
+            <img :src="images[currentIndex]" class="w-full h-48 object-cover rounded-md" alt="Product Image">
+            <button @click="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8592;</button>
+            <button @click="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 px-2 py-1 rounded-full shadow">&#8594;</button>
+          </div>
+  
+          <!-- Thumbnails -->
+          <div class="flex mt-2 space-x-2 overflow-x-auto scrollbar-hide">
+            <template x-for="(img, index) in images" :key="index">
+              <img :src="img" @click="setImage(index)" class="w-14 h-10 object-cover rounded cursor-pointer border-2" :class="{ 'border-indigo-500': currentIndex === index, 'border-transparent': currentIndex !== index }">
+            </template>
+          </div>
+  
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-800">Italian Warddrobe</h3>
+            <p class="text-sm text-gray-600 mt-1">Brand new luxury italian wardrobe for sale</p>
+            <p class="text-indigo-600 font-bold mt-2">₦2,000,000</p>
+            <p class="text-sm text-gray-500 mt-1">Location: Ikeja</p>
+            <div class="flex items-center mt-2">
+              <label for="swap" class="text-sm text-gray-700">Swap Available</label>
+            </div>
+            <div class="mt-2 inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Used</div>
+            <!-- Buttons -->
+            <div class="grid grid-flow-row">
+              <!--<button class="mt-4 w-full font-bold text-sm text-black/80 py-2 border rounded-lg hover:bg-yellow-400">
+                Loan
+              </button>-->
+            
+              <!-- Contact Seller Button -->
+              <button class="contactSellerBtn mt-4 w-full font-bold text-sm text-black/800 py-2 border rounded-lg lg:hover:bg-yellow-400 flex items-center justify-center gap-2">
+                <i class="fas fa-phone"></i> Contact Seller
+              </button>
+            
+              <!-- Hidden Contact Section -->
+              <div class="contactInfo mt-6 hidden text-center text-sm text-gray-700 bg-amber-200 py-6">
+                <span class="sellerNumber font-bold">+234 812 345 6789</span>
+                <button class="copyContactBtn ml-2 text-blue-600 underline text-xs">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="flex justify-center mt-10 lg:mt-16">
+          <h3 class="text-yellow-400 font-bold text-sm">See more items</h3>
+        </div>
+      </section>
