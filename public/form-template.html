@@ -1,0 +1,70 @@
+ <!-- Form image and container -->
+ <section id="get-started" class="rounded-3xl">
+    <div class="form grid grid-flow-row gap-4 rounded-3xl py-8 lg:py-0 mx-3 mt-20 lg:mt-30 lg:mb-20"> 
+      <div class="absolute rounded-3xl inset-0 bg-[url(images/portrait-smiley-man-with-call-me-sign.jpg)] bg-cover bg-center"></div>
+        <!-- Overlay -->
+        <div class="absolute inset-0 rounded-3xl bg-black/60 backdrop-blur-sm z-10"></div>
+        <div class="form lg:flex lg:py-10 lg:justify-center z-20">
+          
+          <!-- Form Container -->
+          <div id="formContainer" class="max-w-md lg:w-[600px] p-6 mx-4 my-6 lg:mx-0 bg-gray-100 rounded-lg rounded-rb-2xl items-center shadow-lg">
+              <div class="grid grid-flow-row mb-6">
+                <h2 class="text-lg lg:text-2xl font-semibold text-black/65">Get Started</h2>
+                <h3 class="text-black/40">Fill out this form to create a trade</h3>
+              </div>
+              
+              <form class="space-y-5 rounded-sm max-w-md w-full">
+                  <!-- Name -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Name</label>
+                    <input type="text" placeholder="Enter your name" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+              
+                  <!-- Email -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Email</label>
+                    <input type="email" placeholder="Enter your email" class="mt-1 w-full text-gray-500 px-4 py-2 border border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+              
+                  <!-- Phone -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  </div>
+              
+                  <!-- City -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">City</label>
+                    <select class="mt-1 w-full px-4 py-2 border border-gray-800/70 text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option value="" class="bg-blue-500">Select your city</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Abuja">Abuja</option>
+                      <option value="Port Harcourt">Port Harcourt</option>
+                      <option value="Owerri">Owerri</option>
+                      <option value="Ibadan">Ibadan</option>
+                    </select>
+                  </div>
+              
+                  <!-- Action -->
+                  <div>
+                    <label class="block text-sm font-medium text-black/65">Do you want to swap, sell or take a loan?</label>
+                    <select class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="swap">Swap</option>
+                      <option value="sell">Sell</option>
+                      <option value="loan">Take a Loan</option>
+                    </select>
+                  </div>
+              
+                  <!-- Submit -->
+                  <div class="pt-4">
+                    <button type="submit" class="w-full bg-yellow-500 text-black/80 font-semibold py-3 rounded-md hover:bg-yellow-400 hover:text-white">
+                      Submit
+                    </button>
+                  </div>
+              </form>
+          </div>
+        </div>
+    </div>
+  </section> 
+    <!-- Form end -->

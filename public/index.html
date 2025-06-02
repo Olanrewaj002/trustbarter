@@ -10,9 +10,9 @@
      <!-- #description -->
      <meta name="description" content="Declutter, sell, swap, exchange, trade, swap in Lagos, I want to swap, can I swap?, apart from jiji, used items" />
      <!-- #author -->
-     <meta name="author" content="Trustbarter" />
+     <meta name="author" content="Trustbarter"/>
      <!-- Robots: allow indexing -->
-     <meta name="robots" content="index, follow" />
+     <meta name="robots" content="index, follow"/>
 
     <!-- CSS Dependencies and Scripts-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -47,24 +47,26 @@
   
 <!--Nav bar-->
 <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-black shadow-md" x-data="{ open: false }">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-4">
+  <div class="max-w-10xl mx-auto px-4 sm:px-6 lg:py-4">
     <div class="flex justify-between items-center py-4">
+
       <!-- Logo -->
       <a href="#home" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-32 lg:w-40"></a>
-
       <!-- Desktop Nav -->
-      <nav class="hidden md:flex space-x-12">
-        <a href="#home" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Home</a>
-        <a href="#about" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">About</a>
-        <a href="#sellers-items" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Deals</a>
+      <nav class="hidden md:flex items-center space-x-12">
+        <a href="#home" class="hover:text-indigo-600 text-white/60 text-2xl font-semibold">Home</a>
+        <a href="#about" class="hover:text-indigo-600 text-white/60 text-2xl font-semibold">About</a>
+        <a href="sell.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Sell</a>
+        <a href="swap.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Swap</a>
+        <a href="loan.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Loan</a>
         <!--<a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Blog</a>
         <a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Contact</a> -->
       </nav>
 
       <!-- Desktop Buttons -->
       <div class="hidden md:flex items-center space-x-4 lg:flex gap-4">
-        <a href="#get-started"><button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</button></a>
-        <a href="#contact" class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Contact Us</a>
+        <!--<a href="#contact" class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-gray-900 hover:bg-indigo-700">Get Started</a>-->
+        <a href="#contact" class="px-4 py-2 bg-yellow-400 text-lg rounded-md font-bold text-gray-900 hover:bg-amber-200">Contact Us</a>
       </div>
 
       <!-- Hamburger -->
@@ -85,6 +87,7 @@
 
   <!-- Overlay -->
   <div 
+    x-data="{ open: false }"
     x-show="open" 
     x-transition.opacity 
     x-cloak 
@@ -101,15 +104,19 @@
   >
     <!-- Links -->
     <nav class="flex flex-col mt-10 lg:mt-0 space-y-6 justify-center items-center">
-      <a href="#home" @click="open = false" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">Home</a>
-      <a href="#about" @click="open = false" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">About</a>
-      <a href="#sellers-items" @click="open = false" class="text-lg font-semibold hover:text-indigo-600 bg-white/30 p-2 rounded-md">Deals</a>
+      <a href="#home" @click="open = false" class="hover:text-indigo-600 bg-white/60 p-3 rounded-lg text-black/80 text-lg font-semibold">Home</a>
+        <a href="#about" @click="open = false" class="hover:text-indigo-600 bg-white/60 p-3 rounded-lg text-black/80 text-lg font-semibold">About</a>
+        <a href="sell.html" @click="open = false"  class="hover:text-indigo-600 bg-white/60 p-3 rounded-lg text-black/80 text-lg font-semibold">Sell</a>
+        <a href="swap.html" @click="open = false" class="hover:text-indigo-600 bg-white/60 p-3 rounded-lg text-black/80 text-lg font-semibold">Swap</a>
+        <a href="loan.html" @click="open = false" class="hover:text-indigo-600 bg-white/60 p-3 rounded-lg text-black/80 text-lg font-semibold">Loan</a>
+        <!--<a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Blog</a>
+        <a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Contact</a> -->
     </nav>
 
-    <!-- Buttons -->
+   <!-- Buttons -->
     <div class="flex flex-col gap-4 mt-10 mb-6">
-      <a href="#get-started" @click="open = false"><button class="w-full bg-yellow-400 py-4 text-black/80 rounded-lg">Get Started</button></a>
-      <a href="#contact" @click="open = false" class="w-full text-center border border-indigo-600/20 text-black/80 bg-white/50 py-4 rounded-lg">Contact Us</a>
+      <!--<a href="#get-started" @click="open = false"><button class="w-full bg-yellow-400 py-4 text-black/80 rounded-lg">Get Started</button></a>-->
+      <a href="#contact" @click="open = false" class="w-full text-center border border-indigo-600/20 text-2xl text-black/80 bg-white/50 py-4 rounded-lg">Contact Us</a>
     </div>
 
     <!-- Social Icons -->
@@ -117,7 +124,7 @@
       <a href="#" class="hover:text-blue-600 bg-white/40 p-2 rounded-sm"><i class="fab fa-facebook-f"></i></a>
       <a href="#" class="hover:text-blue-400 bg-white/40 p-2 rounded-sm"><i class="fab fa-x-twitter"></i></a>
       <a href="#" class="hover:text-pink-500 bg-white/40 p-2 rounded-sm"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="hover:text-blue-700 bg-white/40 p-2 rounded-sm"><i class="fab fa-tiktok"></i></a>
+      <a href="#" class="hover :text-blue-700 bg-white/40 p-2 rounded-sm"><i class="fab fa-tiktok"></i></a>
     </div>
   </div>
 </header>
@@ -130,10 +137,10 @@
         <h1 class="h-text text-3xl opacity-75 font-bold tracking-tight">Sell or Swap items for goods, services or cash anytime</h1>
         <h2 class="h-text text-lg tracking-tight text-gray-700 opacity-80">We help you sell and swap items quickly and securely.</h2>
       </div>
-      <div>
-        <a href="#get-started">
-          <button class="h-text bg-yellow-400 lg:px-16 lg:py-5 py-4 px-8 font-bold text-black/80 rounded-md">Start Your Trade Now</button>
-        </a>
+      <div class="flex items-center gap-2">
+          <a href="sell.html"><button class="h-text bg-yellow-400 hover:bg-amber-200 lg:px-16 lg:py-5 py-3 px-8 font-bold text-black/70 rounded-md">Sell Now</button></a>
+          <a href="swap.html"></a><button class="h-text bg-yellow-400 hover:bg-amber-200 lg:px-16 lg:py-5 py-3 px-8 font-bold text-black/70 rounded-md">Swap Now</button></a>
+          <!--<button class="h-text bg-yellow-400 lg:px-8 lg:py-5 py-3 px-2 font-bold text-black/70 rounded-md">Quick Loan</button>-->
       </div>
     </div>
   
@@ -155,7 +162,7 @@
             </svg>
           </div>
           <h2 class="font-bold opacity-75 text-xl">Swap</h2>
-          <p class="text-gray-700 opacity-80 text-sm max-w-xs">
+          <p class="text-gray-700 opacity-80 text-sm lg:text-lg max-w-xs">
             Exchange goods or services with others in a secure and trusted way.
           </p>
         </div>
@@ -168,7 +175,7 @@
             </svg>
           </div>
           <h2 class="font-bold opacity-75 text-xl">Sell</h2>
-          <p class="text-gray-700 opacity-80 text-sm max-w-xs">
+          <p class="text-gray-700 opacity-80 text-sm lg:text-lg max-w-xs">
             List your items and get cash offers quickly from real people near you.
           </p>
         </div>
@@ -180,7 +187,7 @@
             </svg>
           </div>
           <h2 class="font-bold opacity-75 text-xl">Loan</h2>
-          <p class="text-gray-700 opacity-80 text-sm max-w-xs">
+          <p class="text-gray-700 opacity-80 text-sm lg:text-lg max-w-xs">
             Secure instant loans using your items as collateral. No long paperwork, no stress.
           </p>
         </div>
@@ -207,14 +214,14 @@
               </h3>
             </div>
             <div >
-              <h4 class="info-elab-text-1 text-[16px] text-gray-700 opacity-80">
+              <h4 class="info-elab-text-1 text-[16px] lg:text-lg text-gray-700 opacity-80">
                 Got unused items or extra stuff lying around? With TrustBarter, you can trade, 
                 sell, or get quick loans using what you already own. No hassle. No delay.
               </h4>
             </div>
           </div>
           <div class="md:flex items-center space-x-4">
-            <button class="info-elab-text-1 px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-black/80 hover:bg-indigo-700">Get Started</button>
+            <button class="info-elab-text-1 px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-black/80 hover:bg-amber-200">Sell Now</button>
           </div>
         </div>
       </div>
@@ -237,14 +244,14 @@
               </h3>
             </div>
             <div>
-              <h4 class="elab-text text-[16px] text-gray-700 opacity-80">
+              <h4 class="elab-text text-[16px] lg:text-lg text-gray-700 opacity-80">
                 Thousands of verified users, endless possibilities. Join a trusted community where
                  swapping, selling, and securing loans happens every day, safely and easily.
               </h4>
             </div>
           </div>
           <div class="items-center space-x-4">
-            <button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-black/80 hover:bg-indigo-700">Get Started</button>
+            <button class="px-4 py-2 bg-yellow-400 text-sm rounded-md font-bold text-black/80 hover:bg-amber-200">Swap Now</button>
           </div>
         </div>
           <!--Image for small screen-->
@@ -345,7 +352,7 @@
             </h1>
           </div>
           <div class="flex justify-center mt-4">
-            <p class="text-gray-700 opacity-80 text-center lg:text-lg max-w-2xl">
+            <p class="text-gray-700 opacity-80 text-center lg:text-2xl leading-8 max-w-2xl">
               We are a company registered under the CAC with registration number <span class="font-bold">8308953</span>. We are a trusted platform that connects buyers and sellers. We ensure to enable seamless transactions and secure exchanges.
               Our mission is to simplify the process of buying, selling, and swapping items while ensuring safety and convenience for all users.
             </p>
@@ -377,8 +384,8 @@
               </p>
             </div>
             <div class="mt-6">
-              <a href="#get-started" class="inline-block bg-yellow-400 font-medium px-4 py-2 rounded-md text-sm hover:bg-yellow-400 hover:text-white transition">
-                Swap Now
+              <a href="sell.html" class="inline-block bg-yellow-400 font-medium px-4 py-2 rounded-md text-sm hover:bg-yellow-400 hover:text-white transition">
+                Sell Now
               </a>
             </div>
           </div>
@@ -398,8 +405,8 @@
               </p>
             </div>
             <div class="mt-6">
-              <a href="#get-started" class="inline-block bg-yellow-400 font-medium px-4 py-2 rounded-md text-sm hover:bg-yellow-400 hover:text-white transition">
-                Try It Now
+              <a href="swap.html" class="inline-block bg-yellow-400 font-medium px-4 py-2 rounded-md text-sm hover:bg-amber-200">
+                Try Swapping Now
               </a>
             </div>
           </div>
@@ -419,7 +426,7 @@
               </p>
             </div>
             <div class="mt-6">
-              <a href="#get-started" class="inline-block bg-yellow-400 px-4 py-2 font-medium rounded-md text-sm hover:bg-yellow-400 hover:text-white transition">
+              <a href="sell.html" class="inline-block bg-yellow-400 px-4 py-2 font-medium rounded-md text-sm hover:bg-amber-200">
                 Start Selling Now
               </a>
             </div>
@@ -465,77 +472,6 @@
         </div>
     </section>
     <!--Our core values end-->
-
-    <!-- Form image and container -->
-   <section id="get-started" class="rounded-3xl">
-    <div class="form grid grid-flow-row gap-4 rounded-3xl py-8 lg:py-0 mx-3 mt-20 lg:mt-30 lg:mb-20"> 
-      <div class="absolute rounded-3xl inset-0 bg-[url(images/portrait-smiley-man-with-call-me-sign.jpg)] bg-cover bg-center"></div>
-        <!-- Overlay -->
-        <div class="absolute inset-0 rounded-3xl bg-black/60 backdrop-blur-sm z-10"></div>
-        <div class="form lg:flex lg:py-10 lg:justify-center z-20">
-          
-          <!-- Form Container -->
-          <div id="formContainer" class="max-w-md lg:w-[600px] p-6 mx-4 my-6 lg:mx-0 bg-gray-100 rounded-lg rounded-rb-2xl items-center shadow-lg">
-              <div class="grid grid-flow-row mb-6">
-                <h2 class="text-lg lg:text-2xl font-semibold text-black/65">Get Started</h2>
-                <h3 class="text-black/40">Fill out this form to create a trade</h3>
-              </div>
-              
-              <form class="space-y-5 rounded-sm max-w-md w-full">
-                  <!-- Name -->
-                  <div>
-                    <label class="block text-sm font-medium text-black/65">Name</label>
-                    <input type="text" placeholder="Enter your name" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  </div>
-              
-                  <!-- Email -->
-                  <div>
-                    <label class="block text-sm font-medium text-black/65">Email</label>
-                    <input type="email" placeholder="Enter your email" class="mt-1 w-full text-gray-500 px-4 py-2 border border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  </div>
-              
-                  <!-- Phone -->
-                  <div>
-                    <label class="block text-sm font-medium text-black/65">Phone Number</label>
-                    <input type="tel" placeholder="Enter your phone number" class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  </div>
-              
-                  <!-- City -->
-                  <div>
-                    <label class="block text-sm font-medium text-black/65">City</label>
-                    <select class="mt-1 w-full px-4 py-2 border border-gray-800/70 text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                      <option value="" class="bg-blue-500">Select your city</option>
-                      <option value="Lagos">Lagos</option>
-                      <option value="Abuja">Abuja</option>
-                      <option value="Port Harcourt">Port Harcourt</option>
-                      <option value="Owerri">Owerri</option>
-                      <option value="Ibadan">Ibadan</option>
-                    </select>
-                  </div>
-              
-                  <!-- Action -->
-                  <div>
-                    <label class="block text-sm font-medium text-black/65">Do you want to swap, sell or take a loan?</label>
-                    <select class="mt-1 w-full px-4 py-2 border text-gray-500 border-gray-800/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                      <option value="" disabled selected>Select an option</option>
-                      <option value="swap">Swap</option>
-                      <option value="sell">Sell</option>
-                      <option value="loan">Take a Loan</option>
-                    </select>
-                  </div>
-              
-                  <!-- Submit -->
-                  <div class="pt-4">
-                    <button type="submit" class="w-full bg-yellow-500 text-black/80 font-semibold py-3 rounded-md hover:bg-yellow-400 hover:text-white">
-                      Submit
-                    </button>
-                  </div>
-              </form>
-          </div>
-        </div>
-    </div>
-  </section> 
-    <!-- Form end -->
 
 
     <!--What you can do here-->
@@ -633,10 +569,9 @@
             Don't let your stuff gather dust. Make it work for you with TrustBarter.
           </h4>
         </div>
-        <div class="flex justify-center">
-          <a href="#get-started">
-          <button class="h-text bg-yellow-400 lg:px-16 lg:py-5 py-4 px-8 font-bold text-gray-900 sm:hiddem rounded-md">Get Started</button>
-          </a>
+        <div class="flex justify-center items-center gap-2">
+          <a href="sell.html"><button class="h-text bg-yellow-400 lg:px-16 lg:py-5 py-4 px-8 hover:bg-amber-200 font-bold text-gray-900 sm:hiddem rounded-md">Sell Now</button></a>
+          <a href="swap.html"><button class="h-text bg-yellow-400 lg:px-16 lg:py-5 py-4 px-8 hover:bg-amber-200 font-bold text-gray-900 sm:hiddem rounded-md">Swap Now</button></a>
         </div>
       </div>
     </div>
@@ -699,10 +634,5 @@
       copyright 2025 <strong class="text-yellow-500">Trustbarter Limited</strong>. Designed by Olanrewaju Paul
     </h4>
   </div>
-
-
-      <script type="module">
-       
-      </script>
 </body>
 </html>
