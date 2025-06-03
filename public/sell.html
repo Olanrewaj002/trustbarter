@@ -25,22 +25,10 @@
     <!-- CSS Dependencies and Scripts-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="./output.css" rel="stylesheet">
-    <style>
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;            
-      }
-    </style>
+    
     <link href="./output.css" rel="stylesheet">
-    <style type="text/css">
-      html { margin: 0; height: 100%; overflow: hidden; }
-      iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 0; }
-    </style>
   </head>
-  <body>
+  <body class="min-h-screen overflow-y-auto">
     <!--Nav bar-->
     <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-black shadow-md" x-data="{ open: false }">
     <div class="max-w-10xl mx-auto px-4 sm:px-6 lg:py-4">
@@ -125,102 +113,102 @@
   </header>
   <!--Nav bar end-->
   
-  <main class="px-5 md:px-20 py-10">
-    <form class="space-y-8" id="sellForm">
-      <!-- Location -->
-      <div>
+  <div class="min-h-screen overflow-auto max-w-6xl mx-auto px-4 md:mx-20 py-10">
+    <h1 class="text-3xl font-bold mb-8 text-black/80">Sell Your Item</h1>
+
+    <!-- Sell Form -->
+    <form class="bg-gray-50  px-5 md:px-20 py-10 space-y-8" id="sellForm">
+        <!-- Location -->
+        <div>
         <label class="block text-gray-700 font-semibold mb-2">Your Location</label>
-        <select name="location" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-indigo-500">
-          <option value="">Select location</option>
-          <option value="Lagos">Lagos</option>
-          <option value="Abuja">Abuja</option>
+        <select name="location" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300">
+            <option value="">Select location</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Abuja">Abuja</option>
+            <option value="Port Harcourt">Port Harcourt</option>
+            <!-- Add more options as needed -->
         </select>
-      </div>
-
-      <!-- Category -->
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2">Item Category</label>
-        <select name="category" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-indigo-500">
-          <option value="">Select category</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Furniture">Furniture</option>
-        </select>
-      </div>
-
-      <!-- Name of Item -->
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2">Name of Item</label>
-        <input type="text" name="itemName" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="Samsung TV">
-      </div>
-
-      <!-- Description -->
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2">Description</label>
-        <textarea name="description" rows="4" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="Describe the item..."></textarea>
-      </div>
-
-      <!-- Images Upload Section -->
-      <div>
-        <label class="block text-gray-700 font-semibold mb-4">Upload Images (4)</label>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Image Uploads -->
-          <div class="relative group">
-            <input type="file" name="image1" accept="image/*" class="hidden" onchange="previewImage(this, 'preview1')" />
-            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
-              <img id="preview1" class="h-full object-cover hidden" />
-              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 1</span>
-            </div>
-          </div>
-
-          <div class="relative group">
-            <input type="file" name="image2" accept="image/*" class="hidden" onchange="previewImage(this, 'preview2')" />
-            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
-              <img id="preview2" class="h-full object-cover hidden" />
-              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 2</span>
-            </div>
-          </div>
-
-          <div class="relative group">
-            <input type="file" name="image3" accept="image/*" class="hidden" onchange="previewImage(this, 'preview3')" />
-            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
-              <img id="preview3" class="h-full object-cover hidden" />
-              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 3</span>
-            </div>
-          </div>
-
-          <div class="relative group">
-            <input type="file" name="image4" accept="image/*" class="hidden" onchange="previewImage(this, 'preview4')" />
-            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
-              <img id="preview4" class="h-full object-cover hidden" />
-              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 4</span>
-            </div>
-          </div>
         </div>
-      </div>
-
-      <!-- Personal Info -->
-      <div>
+    
+        <!-- Category -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Item Category</label>
+        <select name="category" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300">
+            <option value="">Select category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Fashion">Fashion</option>
+            <!-- Add more categories as needed -->
+        </select>
+        </div>
+    
+        <!-- Item Name -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Name of Item</label>
+        <input type="text" name="itemName" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="e.g., Samsung TV">
+        </div>
+    
+        <!-- Description -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Description</label>
+        <textarea name="description" rows="4" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="Describe the item..."></textarea>
+        </div>
+    
+        <!-- Image Upload -->
+        <div>
+            <label class="block font-medium mb-3">Upload Images</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Reusable Image Upload Box -->
+            <div class="relative h-48 border-2 border-dashed rounded-lg bg-gray-50 flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img1', 'placeholder1')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img1" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder1" class="text-gray-400 z-0">Click to upload</span>
+            </div>
+            <div class="relative h-48 border-2 border-dashed rounded-lg bg-gray-50 flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img2', 'placeholder2')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img2" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder2" class="text-gray-400 z-0">Click to upload</span>
+            </div>
+            <div class="relative h-48 border-2 border-dashed rounded-lg bg-gray-50 flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img3', 'placeholder3')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img3" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder3" class="text-gray-400 z-0">Click to upload</span>
+            </div>
+            <div class="relative h-48 border-2 border-dashed rounded-lg bg-gray-50 flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img4', 'placeholder4')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img4" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder4" class="text-gray-400 z-0">Click to upload</span>
+            </div>
+            </div>
+        </div>
+    
+        <!-- Name -->
+        <div>
         <label class="block text-gray-700 font-semibold mb-2">Your Name</label>
-        <input type="text" name="yourName" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="John Doe">
-      </div>
-
-      <div>
+        <input type="text" name="yourName" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="John Doe">
+        </div>
+    
+        <!-- Phone -->
+        <div>
         <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
-        <input type="tel" name="phone" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="08012345678">
-      </div>
-
-      <div>
+        <input type="tel" name="phone" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="08012345678">
+        </div>
+    
+        <!-- Email -->
+        <div>
         <label class="block text-gray-700 font-semibold mb-2">Email</label>
-        <input type="email" name="email" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="you@example.com">
-      </div>
-
-      <div class="pt-4">
-        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-md font-semibold text-lg">
-          Submit Item
+        <input type="email" name="email" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="you@example.com">
+        </div>
+    
+        <!-- Submit -->
+        <div class="pt-4">
+        <button type="submit" class="w-full bg-yellow-400 focus:ring-yellow-300 text-black/80 py-3 rounded-md font-semibold text-lg">
+            Submit Item
         </button>
-      </div>
+        </div>
     </form>
-  </main>
+  
+  </div>
 
   </body>
 </html>
