@@ -35,7 +35,6 @@
       }
     </style>
     <link href="./output.css" rel="stylesheet">
-    <script async src="https://tally.so/widgets/embed.js"></script>
     <style type="text/css">
       html { margin: 0; height: 100%; overflow: hidden; }
       iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 0; }
@@ -43,7 +42,7 @@
   </head>
   <body>
     <!--Nav bar-->
-<header class="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-black shadow-md" x-data="{ open: false }">
+    <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-black shadow-md" x-data="{ open: false }">
     <div class="max-w-10xl mx-auto px-4 sm:px-6 lg:py-4">
       <div class="flex justify-between items-center py-4">
   
@@ -126,7 +125,102 @@
   </header>
   <!--Nav bar end-->
   
-      
-    <iframe class="my-10 lg:my-5" data-tally-src="https://tally.so/r/3NQY8p?transparentBackground=1" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Sell"></iframe>
+  <main class="px-5 md:px-20 py-10">
+    <form class="space-y-8" id="sellForm">
+      <!-- Location -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Your Location</label>
+        <select name="location" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+          <option value="">Select location</option>
+          <option value="Lagos">Lagos</option>
+          <option value="Abuja">Abuja</option>
+        </select>
+      </div>
+
+      <!-- Category -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Item Category</label>
+        <select name="category" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+          <option value="">Select category</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Furniture">Furniture</option>
+        </select>
+      </div>
+
+      <!-- Name of Item -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Name of Item</label>
+        <input type="text" name="itemName" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="Samsung TV">
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Description</label>
+        <textarea name="description" rows="4" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="Describe the item..."></textarea>
+      </div>
+
+      <!-- Images Upload Section -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-4">Upload Images (4)</label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Image Uploads -->
+          <div class="relative group">
+            <input type="file" name="image1" accept="image/*" class="hidden" onchange="previewImage(this, 'preview1')" />
+            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
+              <img id="preview1" class="h-full object-cover hidden" />
+              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 1</span>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <input type="file" name="image2" accept="image/*" class="hidden" onchange="previewImage(this, 'preview2')" />
+            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
+              <img id="preview2" class="h-full object-cover hidden" />
+              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 2</span>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <input type="file" name="image3" accept="image/*" class="hidden" onchange="previewImage(this, 'preview3')" />
+            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
+              <img id="preview3" class="h-full object-cover hidden" />
+              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 3</span>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <input type="file" name="image4" accept="image/*" class="hidden" onchange="previewImage(this, 'preview4')" />
+            <div onclick="this.previousElementSibling.click()" class="cursor-pointer h-48 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white">
+              <img id="preview4" class="h-full object-cover hidden" />
+              <span class="text-gray-400 group-hover:text-indigo-500">Click to upload Image 4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Info -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Your Name</label>
+        <input type="text" name="yourName" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="John Doe">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+        <input type="tel" name="phone" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="08012345678">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">Email</label>
+        <input type="email" name="email" required class="w-full border border-gray-300 rounded-md px-4 py-3" placeholder="you@example.com">
+      </div>
+
+      <div class="pt-4">
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-md font-semibold text-lg">
+          Submit Item
+        </button>
+      </div>
+    </form>
+  </main>
+
   </body>
 </html>
