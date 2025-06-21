@@ -1,32 +1,23 @@
-//firebase logic
 
-document.getElementById('formContainer').addEventListener("submit", submitForm)
+  const swapOption = document.getElementById("swapOption");
+  const itemInput = document.getElementById("desiredItemInput");
+  const serviceDropdown = document.getElementById("serviceOptions");
+  const serviceWrapper = document.getElementById("serviceDropdownWrapper");
 
-function submitForm(e) {
-    e.preventDefault();
-
-    var name = getElementVal('name')
-    var email = getElementVal('email')
-    var phone = getElementVal('phone')
-}
-
-const getElementVal = (id) => {
-    return document.getElementById(id).value;
-}
-
-//sell script
-function preview(input, imgId, placeholderId) {
-    const file = input.files[0];
-    const img = document.getElementById(imgId);
-    const placeholder = document.getElementById(placeholderId);
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        img.src = reader.result;
-        img.classList.remove('hidden');
-        placeholder.classList.add('hidden');
-      };
-      reader.readAsDataURL(file);
+  swapOption.addEventListener("change", () => {
+    if (swapOption.value === "item") {
+      itemInput.classList.remove("hidden");
+      serviceWrapper.classList.add("hidden");
+      serviceDropdown.value = '';
+    } else if (swapOption.value === "service") {
+      itemInput.classList.add("hidden");
+      itemInput.value = '';
+      serviceWrapper.classList.remove("hidden");
+    } else {
+      itemInput.classList.remove("hidden");
+      serviceWrapper.classList.add("hidden");
+      serviceDropdown.value = '';
     }
-  }
+  });
+
+

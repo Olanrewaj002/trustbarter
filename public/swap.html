@@ -17,29 +17,32 @@
      <!-- Robots: allow indexing -->
      <meta name="robots" content="index, follow"/>
 
-    <link 
-    rel="stylesheet" 
-    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" 
-    crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
     <!-- CSS Dependencies and Scripts-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    <script type="module">
+      window.preview = function(input, imgId, placeholderId) {
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = document.getElementById(imgId);
+            const placeholder = document.getElementById(placeholderId);
+            img.src = e.target.result;
+            img.classList.remove("hidden");
+            placeholder.classList.add("hidden");
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    </script>
+
+    <script type="module" src="trustbarter.js"></script>
+    <script type="module" src="swap.js"></script>
+
     <link href="./output.css" rel="stylesheet">
-    <style>
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;            
-      }
-    </style>
-    <script async src="https://tally.so/widgets/embed.js"></script>
-    <style type="text/css">
-      html { margin: 0; height: 100%; overflow: hidden; }
-      iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 0; }
-    </style>
   </head>
   <body>
     <!--Nav bar-->
@@ -51,10 +54,10 @@
         <a href="index.html" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-32 lg:w-40"></a>
         <!-- Desktop Nav -->
         <nav class="hidden md:flex items-center space-x-12">
-        <a href="index.html" class="hover:text-indigo-600 text-white/60 text-2xl font-semibold">Home</a>
-        <a href="index.html#about" class="hover:text-indigo-600 text-white/60 text-2xl font-semibold">About</a>
+        <a href="index.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Home</a>
+        <a href="index.html#about" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">About</a>
         <a href="sell.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Sell</a>
-        <a href="swap.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Swap</a>
+        <a href="swap.html" class="hover:text-indigo-600 text-white text-2xl font-semibold">Swap</a>
         <a href="loan.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Loan</a>
         <!--<a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Blog</a>
         <a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Contact</a> -->
@@ -125,7 +128,254 @@
     </div>
   </header>
   <!--Nav bar end-->
+  <div class="min-h-screen overflow-auto max-w-6xl mx-auto px-4  py-10">
+    <div class="lg:mx-32 mx-4 grid mb-4 grid-flow-row gap-2">
+        <h1 class="text-3xl font-bold text-black/80">Swap Your Item</h1>
+        <h2 class="text-black/50">Fill in the form below to swap your item</h2>
+    </div>
+
+    <!-- Sell Form -->
+    <form class="px-5 md:px-32 py-10 space-y-8" id="swapForm">
+        <!-- Location -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">Your Location</label>
+            <div class="relative lg:w-1/2">
+              <select
+                name="location"
+                required
+                class="w-full appearance-none border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-yellow-300 text-gray-700"
+              >
+                <option value="">Select location</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Abuja">Abuja</option>
+                <option value="Port Harcourt">Port Harcourt</option>
+                <!-- Add more options as needed -->
+              </select>
+          
+              <!-- Custom arrow icon -->
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+    
+        <!-- Category -->
+        <div class="mb-6 lg:w-1/2">
+            <label class="block text-gray-700 font-semibold mb-2">Item Category</label>
+            <div class="relative">
+              <select
+                name="category"
+                required
+                class="w-full appearance-none border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-yellow-300 bg-white text-gray-700"
+              >
+                <option value="" class="text-black/50">Select category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Fashion">Fashion</option>
+                <!-- Add more categories as needed -->
+              </select>
+          
+              <!-- Custom dropdown arrow -->
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+    
+        <!-- Item Name -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Name of Item</label>
+        <input type="text" name="itemName" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="e.g., Samsung TV">
+        </div>
+
+        <!-- Item condition -->
+        <div class="mb-6 lg:w-1/2">
+            <label class="block text-gray-700 font-semibold mb-2">Condition</label>
+            <div class="relative">
+              <select
+                name="condition"
+                required
+                class="w-full appearance-none border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-yellow-300 bg-white text-gray-700"
+              >
+                <option value="">Select condition</option>
+                <option value="New">New</option>
+                <option value="Used">Used</option>
+              </select>
+          
+              <!-- Custom dropdown arrow -->
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        <!-- Description -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Description</label>
+        <textarea name="description" rows="4" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="Describe the item..."></textarea>
+        </div>
+    
+        <!-- Image Upload -->
+        <div>
+            <label class="block font-medium mb-3">Upload Images of your item</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Reusable Image Upload Box -->
+            <div class="relative h-48 border-black/30 border rounded-lg flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img1', 'placeholder1')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img1" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder1" class="text-gray-400 z-0">Click to upload 5mb max</span>
+            </div>
+            <div class="relative h-48 border-black/30 border rounded-lg flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img2', 'placeholder2')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img2" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder2" class="text-gray-400 z-0">Click to upload image 5mb max</span>
+            </div>
+            <div class="relative h-48 border-black/30 border rounded-lg flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img3', 'placeholder3')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img3" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder3" class="text-gray-400 z-0">Click to upload image 5mb max</span>
+            </div>
+            <div class="relative h-48 border-black/30 border rounded-lg flex items-center justify-center overflow-hidden">
+                <input type="file" accept="image/*" onchange="preview(this, 'img4', 'placeholder4')" class="absolute inset-0 opacity-0 z-10 cursor-pointer" />
+                <img id="img4" class="absolute h-full w-full object-cover hidden z-0" />
+                <span id="placeholder4" class="text-gray-400 z-0">Click to upload 5mb max</span>
+            </div>
+            </div>
+        </div>
+
+        <div id="swap-section" class="space-y-4">
+          <label class="block text-gray-700 font-semibold mb-2">What item do you want in exchange?</label>
+        
+          <!-- Type Selector with custom dropdown icon -->
+          <div class="relative">
+            <select
+              id="swapOption"
+              class="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-yellow-300 text-gray-700 appearance-none"
+            >
+              <option value="">Select preference</option>
+              <option value="item">Item</option>
+              <option value="service">Service</option>
+            </select>
+            <!-- Custom dropdown arrow -->
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+              <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        
+          <!-- Existing item input -->
+          <input
+            type="text"
+            id="desiredItemInput"
+            name="itemName"
+            class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300"
+            placeholder="e.g., Samsung TV"
+          />
+        
+          <!-- Service dropdown with custom dropdown icon -->
+          <div class="relative hidden" id="serviceDropdownWrapper">
+            <select
+              id="serviceOptions"
+              name="serviceType"
+              class="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-yellow-300 text-gray-700 appearance-none"
+            >
+              <option value="">Select a service</option>
+              <option value="Plumbing">🛠️ Plumbing</option>
+              <option value="Electrician">💡 Electrician</option>
+              <option value="Mechanic">🔧 Mechanic</option>
+            </select>
+            <!-- Custom dropdown arrow -->
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+              <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+          <!-- Availability -->
+        <div class="mb-6 lg:w-1/2">
+            <label class="block text-gray-700 font-semibold mb-2">Would you be available for inspection if we<br>find you a swap match?</label>
+            <div class="relative">
+              <select
+                name="condition"
+                required
+                class="w-full appearance-none border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-yellow-300 bg-white text-gray-700"
+              >
+                <option value="">Select condition</option>
+                <option value="New">Yes</option>
+                <option value="Used">No</option>
+              </select>
+          
+              <!-- Custom dropdown arrow -->
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+    
+        <!-- Name -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Your Name</label>
+        <input type="text" name="yourName" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="John Doe">
+        </div>
+    
+        <!-- Phone -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+        <input type="tel" name="phone" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="08012345678">
+        </div>
+    
+        <!-- Email -->
+        <div>
+        <label class="block text-gray-700 font-semibold mb-2">Email</label>
+        <input type="email" name="email" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-yellow-300" placeholder="you@example.com">
+        </div>
+    
+        <!-- Submit -->
+        <div class="pt-4">
+        <button type="submit" class="w-full bg-yellow-400 focus:ring-yellow-300 text-black/80 py-3 rounded-md font-semibold text-lg">
+            Submit Item
+        </button>
+        </div>
+    </form>
   
-    <iframe class="my-10 lg:my-5" data-tally-src="https://tally.so/r/w5DqdZ?transparentBackground=1" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Swap Item"></iframe>
+  </div>
+  
+
   </body>
 </html>

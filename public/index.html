@@ -54,11 +54,11 @@
       <a href="#home" class="text-2xl font-bold text-indigo-600 z-50 relative"><img src="images/new-logo-yellow.png" class="w-32 lg:w-40"></a>
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center space-x-12">
-        <a href="#home" class="hover:text-indigo-600 text-white/60 text-2xl font-semibold">Home</a>
-        <a href="#about" class="hover:text-indigo-600 text-white/60 text-2xl font-semibold">About</a>
-        <a href="sell.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Sell</a>
-        <a href="swap.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Swap</a>
-        <a href="loan.html" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">Loan</a>
+        <a href="#home" class="hover:text-indigo-600 text-white text-2xl font-semibold">Home</a>
+        <a href="#about" class="hover:text-indigo-600 text-yellow-400 text-2xl font-semibold">About</a>
+        <a href="sell.html" class="action-btn hover:text-indigo-600 text-yellow-400 text-2xl font-semibold" data-target="sellForm">Sell</a>
+        <a href="swap.html" class="action-btn hover:text-indigo-600 text-yellow-400 text-2xl font-semibold" data-target="swapForm">Swap</a>
+        <a href="loan.html" class="action-btn hover:text-indigo-600 text-yellow-400 text-2xl font-semibold" data-target="loanForm">Loan</a>
         <!--<a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Blog</a>
         <a href="#" class="hover:text-indigo-600 text-white/60 text-sm font-semibold">Contact</a> -->
       </nav>
@@ -151,6 +151,11 @@
   </div>
   <!--Hero section end-->
   
+  <!-- Swap Items Dispay -->
+  <section id="swapItemsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <!-- Items will load here -->
+  </section>
+  <!-- Swap Items Dispay End-->
 
     <!-- List of functions-->
     <div id="services" class="services grid grid-cols-1 sm:grid-cols-3 gap-10 lg:mt-30 mb-28 lg:mb-50 px-6">
@@ -296,8 +301,8 @@
                     1
                 </div>
               </div>
-                <p class="text-gray-700 opacity-80 text-center font-medium leading-relaxed">
-                Declare your trade intentions by <strong>"filling out our form"</strong> and clicking submit.
+                <p class="text-gray-700 opacity-80 lg:text-lg text-center font-medium leading-relaxed">
+                Identify and fill your form on either Sell,<br> Swap or Loan.
                 </p>
                 <!--image-->
                 <div>
@@ -305,7 +310,7 @@
                 </div>
             </div>
         
-            <!-- Step 2 -->
+            <!-- Step 2
             <div class="step bg-white border/80 mx-4 grid grid-flow-row gap-4 lg:mx-0  p-4 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300">
               <div class="flex justify-center mb-2">
                 <div class="w-16 h-16 flex lg:flex-none items-center justify-center rounded-full bg-yellow-400 text-[#550000] text-3xl font-bold shadow-md">
@@ -315,21 +320,23 @@
                 <p class="text-center text-gray-700 opacity-80 font-medium leading-relaxed">
                 Our team of experts will reach out to you swiftly to help guide the process.
                 </p>
-                <!--image-->
+                
                 <div>
                   <img src="images/call.jpg" class="w-[580px] rounded-md">
                 </div>
             </div>
+            -->
+
         
             <!-- Step 3 -->
             <div class="step bg-white grid grid-flow-row gap-4 mx-4 lg:mx-0 p-4 border/80 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300">
               <div class="flex justify-center mb-2">
                 <div class="w-16 h-16 flex items-center lg:flex-none justify-center rounded-full bg-[#002d62] text-white text-3xl font-bold shadow-md">
-                    3
+                    2
                 </div>
               </div>
-                <p class="text-center text-gray-800 font-medium leading-relaxed">
-                We begin processing your application to find you the best available deal.
+                <p class="text-center text-gray-800 lg:text-lg font-medium leading-relaxed">
+                We begin processing your application to find<br>you the best available deal.
                 </p>
                 <!--image-->
                 <div>
@@ -599,7 +606,7 @@
         <div class="grid grid-flow-row gap-3">
           <a href="#" class="hover:underline"></a>
           <a href="#" class="hover:underline text-white/60 text-sm font-semibold">Services</a>
-          <a href="#" class="hover:underline text-white/60 text-sm font-semibold">About</a>
+          <a href="#about" class="hover:underline text-white/60 text-sm font-semibold">About</a>
           <a href="#" class="hover:underline text-white/60 text-sm font-semibold">Affiliate Program</a>
           <a href="#" class="hover:underline text-white/60 text-sm font-semibold">Special Offers</a>
         </div>
