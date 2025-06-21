@@ -1,6 +1,8 @@
 import {
-  db, storage, collection, addDoc, ref, uploadBytes, getDownloadURL
+  db, storage, addDoc, ref, uploadBytes, getDownloadURL
 } from './firebase.js';
+import { collection } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 document.getElementById('sellForm').addEventListener('submit', async function (e) {
   e.preventDefault();
