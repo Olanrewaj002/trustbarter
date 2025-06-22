@@ -19,5 +19,3 @@
       serviceDropdown.value = '';
     }
   });
-
-
