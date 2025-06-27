@@ -16,43 +16,20 @@
      <!-- Robots: allow indexing -->
      <meta name="robots" content="index, follow"/>
 
-     <script type="module" src="./sell.js" defer></script>
+     <!-- Put in your HTML <head> or before </body> -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"></script>
+    <script src="sell.js" defer></script>
 
-     <!--Preview image-->
-     <script type="module">
-      window.preview = function (input, imgId, placeholderId, loaderId) {
-        const file = input.files[0];
-        const reader = new FileReader();
-
-        const img = document.getElementById(imgId);
-        const placeholder = document.getElementById(placeholderId);
-        const loader = document.getElementById(loaderId);
-
-        if (!file) return;
-
-        loader.style.display = "block";
-        reader.onload = function (e) {
-          img.src = e.target.result;
-          img.style.display = "block";
-          placeholder.style.display = "none";
-          loader.style.display = "none";
-        };
-        reader.readAsDataURL(file);
-      };
-
-     </script>
+     
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"/>
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js"></script>
-
 
     <!-- CSS Dependencies and Scripts-->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="./output.css" rel="stylesheet">
+
     <script src="trustbarter.js"></script>
     
     <link href="./output.css" rel="stylesheet">
@@ -419,6 +396,206 @@
       copyright 2025 <strong class="text-yellow-500">Trustbarter Limited</strong>. Designed by Olanrewaju Paul
     </h4>
   </div>
+
+  <!-- Auth Modal -->
+   <!-- Overlay & Modal -->
+  <div id="authModal" class="fixed inset-0 hidden z-50 bg-black/50 flex justify-center items-center">
+    <div class="relative bg-white mx-3 p-6 pt-10 rounded-xl w-full max-w-md shadow-xl">
+
+      <!-- Close Button (top right) -->
+      <button id="closeModal" class="absolute top-3 right-3 text-gray-500 text-xl hover:text-black">&times;</button>
+
+      <!-- Title centered -->
+      <div class="text-center mb-6 mt-2">
+        <h2 class="text-xl font-semibold">Sign In to TrustBarter</h2>
+      </div>
+
+      <!-- Email Auth Form -->
+      <form id="auth-form" class="space-y-4">
+        <input type="email" name="email" required placeholder="Email"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:outline-none">
+        <input type="password" name="password" required placeholder="Password"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:outline-none">
+        
+        <button type="submit"
+          class="w-full py-3 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-500">Continue</button>
+
+        <!-- Forgot password link -->
+        <p class="text-sm text-right mt-1">
+          <a href="#" id="forgotPassword" class="text-yellow-600 hover:underline">Forgot Password?</a>
+        </p>
+      </form>
+
+      <!-- Divider -->
+      <div class="flex items-center my-5">
+        <hr class="flex-grow border-gray-300">
+        <span class="mx-3 text-gray-400 text-sm">or</span>
+        <hr class="flex-grow border-gray-300">
+      </div>
+
+      <!-- Social Buttons -->
+      <button id="googleSignIn"
+        class="w-full py-3 border border-gray-300 rounded-lg mb-3 flex items-center justify-center gap-2 hover:bg-gray-50">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
+        Continue with Google
+      </button>
+
+      <button id="appleSignIn"
+        class="w-full py-3 border border-gray-300 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50">
+        <img src="https://www.svgrepo.com/show/303128/apple-logo.svg" alt="Apple" class="w-5 h-5">
+        Continue with Apple
+      </button>
+
+      <p class="text-sm text-center mt-4">
+        Don't have an account? 
+        <a href="#" id="createAccount" class="text-yellow-600 hover:underline">Create one</a>
+      </p>
+    </div>
+  </div>
+
+
+ <!-- Firebase SDKs -->
+<script type="module">
+  // Import Firebase modules
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
+  import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js';
+
+  // Your Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyD4EvDKSSjxjDTr3hGy_oUGxK4Vej2V1mA",
+      authDomain: "trustbarter-7f8b0.firebaseapp.com",
+      projectId: "trustbarter-7f8b0",
+      storageBucket: "trustbarter-7f8b0.firebasestorage.app",
+      messagingSenderId: "550123374269",
+      appId: "1:550123374269:web:bc84078db0c3b23f7ad9d4",
+      measurementId: "G-XSD1K5KZJ3"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  // Global variables to store uploaded images
+  let uploadedImages = [];
+
+  // Image preview function
+  window.preview = function(input, imgId, placeholderId, loaderId) {
+      const file = input.files[0];
+      if (file) {
+          // Check file size (5MB limit)
+          if (file.size > 5 * 1024 * 1024) {
+              alert('File size must be less than 5MB');
+              input.value = '';
+              return;
+          }
+
+          // Show loader
+          document.getElementById(loaderId).classList.remove('hidden');
+          document.getElementById(placeholderId).classList.add('hidden');
+
+          // Create file reader for preview
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              const img = document.getElementById(imgId);
+              img.src = e.target.result;
+              img.classList.remove('hidden');
+              
+              // Hide loader
+              document.getElementById(loaderId).classList.add('hidden');
+          };
+          reader.readAsDataURL(file);
+
+          // Store file for upload
+          uploadedImages[parseInt(imgId.slice(-1)) - 1] = file;
+      }
+  };
+
+  // Upload image to Firebase Storage
+  async function uploadImage(file, itemId, imageIndex) {
+      const storageRef = ref(storage, `items/${itemId}/image_${imageIndex}_${Date.now()}`);
+      const snapshot = await uploadBytes(storageRef, file);
+      return await getDownloadURL(snapshot.ref);
+  }
+
+  // Form submission handler
+  document.getElementById('sellForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.textContent;
+      
+      try {
+          // Show loading state
+          submitBtn.textContent = 'Uploading...';
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-50');
+
+          // Get form data
+          const formData = new FormData(this);
+          const itemData = {
+              location: formData.get('location'),
+              category: formData.get('category'),
+              itemName: formData.get('itemName'),
+              condition: formData.get('condition'),
+              description: formData.get('description'),
+              price: parseFloat(formData.get('price')),
+              yourName: formData.get('yourName'),
+              phone: formData.get('phone'),
+              email: formData.get('email'),
+              createdAt: serverTimestamp(),
+              status: 'active'
+          };
+
+          // Upload images first if any
+          const imageUrls = [];
+          for (let i = 0; i < uploadedImages.length; i++) {
+              if (uploadedImages[i]) {
+                  submitBtn.textContent = `Uploading image ${i + 1}...`;
+                  const tempId = Date.now() + '_' + i; // Temporary ID for storage path
+                  const imageUrl = await uploadImage(uploadedImages[i], tempId, i + 1);
+                  imageUrls.push(imageUrl);
+              }
+          }
+
+          // Add images to item data if any were uploaded
+          if (imageUrls.length > 0) {
+              itemData.images = imageUrls;
+          }
+
+          // Add item to Firestore
+          const docRef = await addDoc(collection(db, 'items'), itemData);
+          
+          // Show success message
+          alert('Item submitted successfully!');
+          
+          // Reset form
+          this.reset();
+          uploadedImages = [];
+          
+          // Reset image previews
+          for (let i = 1; i <= 4; i++) {
+              document.getElementById(`img${i}`).classList.add('hidden');
+              document.getElementById(`placeholder${i}`).classList.remove('hidden');
+          }
+
+          console.log('Document written with ID: ', docRef.id);
+
+      } catch (error) {
+          console.error('Error adding item:', error);
+          alert('Failed to submit item. Please try again.');
+      } finally {
+          // Reset button state
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-50');
+      }
+  });
+
+  console.log('Firebase initialized successfully!');
+</script>
+
   </body>
     
 </html>

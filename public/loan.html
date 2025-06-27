@@ -20,6 +20,13 @@
      <!-- Robots: allow indexing -->
      <meta name="robots" content="index, follow"/>
 
+     <!-- Firebase v9 CDN -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+
+    
+
      <!--Preview image-->
      <script type="module">
         window.preview = function (input, imgId, placeholderId, loaderId) {
@@ -45,11 +52,6 @@
        </script>
   
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous"/>
-      <!-- Firebase App (the core Firebase SDK) -->
-      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-      <!-- Add Firebase products that you want to use -->
-      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js"></script>
   
   
       <!-- CSS Dependencies and Scripts-->
@@ -146,202 +148,196 @@
 
 <body class="bg-gray-100">
 
-    <div class="min-h-screen overflow-auto max-w-6xl mx-auto pt-10">
-    <div class="lg:mx-32 mx-5 grid mb-4 grid-flow-row gap-2">
-        <h1 class="text-3xl font-bold text-black/80">Loan</h1>
-        <h2 class="text-black/50">Fill in the form below to begin your loan application</h2>
-    </div>
-    <div>
-
-    <!-- first ad last name -->
-    <form class="mx-5 my-10" id="loan-form">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-            <div>
-            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-            <input type="text" id="firstName" name="firstName" required
-                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                placeholder="e.g., John">
-            </div>
+    
+  <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
+    <div class="p-6">
+        <h1 class="text-2xl font-bold text-center mb-8">Loan Application Form</h1>
         
-            <div>
-            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Surname</label>
-            <input type="text" id="lastName" name="lastName" required
-                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                placeholder="e.g., Doe">
-            </div>
-        </div>
-
-        <!-- Phone Number -->
-        <div class="mb-4">
-            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required
-            placeholder="e.g., 08012345678"
-            pattern="^0[789][01]\d{8}$"
-            class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-        </div>
-  
-        <!-- Email address -->
-        <div class="mb-4">
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-            <input type="email" id="email" name="email" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="e.g., example@email.com">
-        </div>
-
-    <!-- STATE CUSTOM DROPDOWN -->
-        <div class="mb-4 relative">
-            <label class="block text-sm font-medium text-gray-700 mb-1">State</label>
-            <button id="stateToggle" type="button"
-            class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 relative">
-            <span id="selectedState">Select a state</span>
-            <svg class="w-4 h-4 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-            </button>
-            <ul id="stateOptions"
-            class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 max-h-60 overflow-y-auto hidden">
-            <!-- States will be populated here -->
-            </ul>
-            <input type="hidden" id="stateInput" name="state" required />
-        </div>
-        
-        <!-- LGA Dropdown -->
-        <div class="mb-4 relative">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Local Government</label>
-            <button id="lgaToggle" type="button"
-            class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 relative disabled:opacity-50"
-            disabled>
-            <span id="selectedLGA">Select an LGA</span>
-            <svg class="w-4 h-4 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-            </button>
-            <ul id="lgaOptions"
-            class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 max-h-60 overflow-y-auto hidden">
-            <!-- LGAs will be populated here -->
-            </ul>
-            <input type="hidden" id="lgaInput" name="lga" required />
-        </div>
-
-        <!-- Loan Amount -->
-        <div id="loanAmount" class="my-4">
-            <label for="loanAmount" class="block text-sm font-medium text-gray-700 mb-1">
-                How much are you applying for? (₦)
-            </label>
-            <input type="number" id="loanAmount" name="loanAmount" required min="1000" max="10000000"
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="e.g., 500000" />
-        </div>
-  
-  
-        <!-- Reason for Loan Custom Dropdown -->
-        <div id="loanReason" class="my-4 relative">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Reason for Loan</label>
+        <form class=" my-10 lg:mx-10" id="loan-form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                <div>
+                    <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                        placeholder="e.g., John">
+                </div>
             
-            <button id="reasonToggle" type="button"
-            class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 relative">
-            <span id="selectedReason">Select a reason</span>
-            <svg class="w-4 h-4 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-            </button>
-        
-            <ul id="reasonOptions"
-            class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 hidden max-h-60 overflow-y-auto">
-            <li data-value="business" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Business</li>
-            <li data-value="health" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Health</li>
-            <li data-value="rent" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Rent</li>
-            <li data-value="school fee" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">School Fee</li>
-            </ul>
-        
-            <input type="hidden" id="loanReason" name="loanReason" required />
-        </div>
-  
-          
-        <!-- Business or Salary Earner Selector -->
-        <div class="mb-4 relative">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-            Are you a business owner or salary earner?
-            </label>
-            <button id="dropdownToggle" type="button"
-            class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
-            <span id="dropdownSelected">Select an option</span>
-            <svg class="w-4 h-4 absolute right-3 top-9 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-            </button>
-        
-            <!-- Options -->
-            <ul id="dropdownOptions"
-            class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 hidden">
-            <li data-value="business"
-                class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Business Owner</li>
-            <li data-value="salary"
-                class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Salary Earner</li>
-            </ul>
-            <input type="hidden" id="userType" name="userType" required />
-        </div>
-        
-        <!-- Business Fields -->
-        <div id="businessFields" class="hidden space-y-4">
-            <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Turnover (₦)</label>
-            <input type="text" name="monthlyTurnover"
-                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                placeholder="e.g., 1,000,000" />
+                <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Surname</label>
+                    <input type="text" id="lastName" name="lastName" required
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                        placeholder="e.g., Doe">
+                </div>
             </div>
-            <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload CAC Document</label>
-            <input type="file" name="cacDocument" accept=".pdf,.jpg,.jpeg,.png"
-                class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
-            </div>
-            <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Bank Statement for the Last 6 Months</label>
-            <input type="file" name="businessBankStatement" accept=".pdf,.jpg,.jpeg,.png"
-                class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
-            </div>
-        </div>
-        
-        <!-- Salary Fields -->
-        <div id="salaryFields" class="hidden space-y-4">
-            <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Income (₦)</label>
-            <input type="text" name="monthlyIncome"
-                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                placeholder="e.g., 300,000" />
-            </div>
-            <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Valid Work ID</label>
-            <input type="file" name="workId" accept=".pdf,.jpg,.jpeg,.png"
-                class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
-            </div>
-            <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Bank Statement for the Last 6 Months</label>
-            <input type="file" name="salaryBankStatement" accept=".pdf,.jpg,.jpeg,.png"
-                class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
-            </div>
-        </div>
 
-        <!-- Upload Image-->
-        <div id="clientImage" class="my-4">
-            <label for="userPhoto" class="block text-sm font-medium text-gray-700 mb-1">Upload Your Photo</label>
-            <input type="file" id="userPhoto" name="userPhoto" accept="image/jpeg, image/png, image/webp"
-              class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
-        </div>
-          
+            <!-- Phone Number -->
+            <div class="mb-4">
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required
+                    placeholder="e.g., 08012345678"
+                    pattern="^0[789][01]\d{8}$"
+                    class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+            </div>
+      
+            <!-- Email address -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" id="email" name="email" required
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    placeholder="e.g., example@email.com">
+            </div>
 
-        <!-- Submit -->
-        <div class="pt-4 mt-12 mb-24">
-            <button type="submit" id="loan-submit" class="w-full bg-yellow-400 focus:ring-yellow-300 text-black/80 py-3 rounded-md font-semibold text-lg">
-                Submit Application
-            </button>
-        </div>
-  
-    </form>
+            <!-- STATE CUSTOM DROPDOWN -->
+            <div class="mb-4 relative">
+                <label class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                <button id="stateToggle" type="button"
+                    class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 relative">
+                    <span id="selectedState">Select a state</span>
+                    <svg class="w-4 h-4 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <ul id="stateOptions"
+                    class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 max-h-60 overflow-y-auto hidden">
+                    <!-- States will be populated here -->
+                </ul>
+                <input type="hidden" id="stateInput" name="state" required />
+            </div>
+            
+            <!-- LGA Dropdown -->
+            <div class="mb-4 relative">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Local Government</label>
+                <button id="lgaToggle" type="button"
+                    class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 relative disabled:opacity-50"
+                    disabled>
+                    <span id="selectedLGA">Select an LGA</span>
+                    <svg class="w-4 h-4 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <ul id="lgaOptions"
+                    class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 max-h-60 overflow-y-auto hidden">
+                    <!-- LGAs will be populated here -->
+                </ul>
+                <input type="hidden" id="lgaInput" name="lga" required />
+            </div>
+
+            <!-- Loan Amount -->
+            <div class="my-4">
+                <label for="loanAmountInput" class="block text-sm font-medium text-gray-700 mb-1">
+                    How much are you applying for? (₦)
+                </label>
+                <input type="number" id="loanAmountInput" name="loanAmount" required min="1000" max="10000000"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    placeholder="e.g., 500000" />
+            </div>
+      
+            <!-- Reason for Loan Custom Dropdown -->
+            <div class="my-4 relative">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Reason for Loan</label>
+                
+                <button id="reasonToggle" type="button"
+                    class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 relative">
+                    <span id="selectedReason">Select a reason</span>
+                    <svg class="w-4 h-4 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            
+                <ul id="reasonOptions"
+                    class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 hidden max-h-60 overflow-y-auto">
+                    <li data-value="business" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Business</li>
+                    <li data-value="health" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Health</li>
+                    <li data-value="rent" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Rent</li>
+                    <li data-value="school fee" class="cursor-pointer px-4 py-2 hover:bg-yellow-100">School Fee</li>
+                </ul>
+            
+                <input type="hidden" id="loanReasonInput" name="loanReason" required />
+            </div>
+      
+            <!-- Business or Salary Earner Selector -->
+            <div class="mb-4 relative">
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Are you a business owner or salary earner?
+                </label>
+                <button id="dropdownToggle" type="button"
+                    class="w-full text-left border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <span id="dropdownSelected">Select an option</span>
+                    <svg class="w-4 h-4 absolute right-3 top-9 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            
+                <!-- Options -->
+                <ul id="dropdownOptions"
+                    class="absolute z-10 bg-white border border-gray-300 w-full rounded shadow-md mt-1 hidden">
+                    <li data-value="business"
+                        class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Business Owner</li>
+                    <li data-value="salary"
+                        class="cursor-pointer px-4 py-2 hover:bg-yellow-100">Salary Earner</li>
+                </ul>
+                <input type="hidden" id="userType" name="userType" required />
+            </div>
+            
+            <!-- Business Fields -->
+            <div id="businessFields" class="hidden space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Turnover (₦)</label>
+                    <input type="text" name="monthlyTurnover"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                        placeholder="e.g., 1,000,000" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Upload CAC Document</label>
+                    <input type="file" name="cacDocument" accept=".pdf,.jpg,.jpeg,.png"
+                        class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Upload Bank Statement for the Last 6 Months</label>
+                    <input type="file" name="businessBankStatement" accept=".pdf,.jpg,.jpeg,.png"
+                        class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
+                </div>
+            </div>
+            
+            <!-- Salary Fields -->
+            <div id="salaryFields" class="hidden space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Income (₦)</label>
+                    <input type="text" name="monthlyIncome"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                        placeholder="e.g., 300,000" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Upload Work ID</label>
+                    <input type="file" name="workId" accept=".pdf,.jpg,.jpeg,.png"
+                        class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Upload Bank Statement for the Last 6 Months</label>
+                    <input type="file" name="salaryBankStatement" accept=".pdf,.jpg,.jpeg,.png"
+                        class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
+                </div>
+            </div>
+
+            <!-- Upload Employment Letter -->
+            <div class="my-4">
+                <label for="userPhoto" class="block text-sm font-medium text-gray-700 mb-1">Upload Employment Letter</label>
+                <input type="file" id="userPhoto" name="userPhoto" accept=".pdf,.jpg,.jpeg,.png"
+                    class="w-full border border-gray-300 rounded px-3 py-2 file:bg-yellow-500 file:text-white file:rounded" />
+            </div>
+
+            <!-- Submit -->
+            <div class="pt-4 mt-12 mb-24">
+                <button type="submit" id="loan-submit" class="w-full bg-yellow-400 focus:ring-yellow-300 text-black/80 py-3 rounded-md font-semibold text-lg">
+                    <span id="submitText">Submit Application</span>
+                    <span id="loadingText" class="hidden">Uploading...</span>
+                </button>
+            </div>
+        </form>
     </div>
 
     <!--footer start-->
@@ -422,264 +418,287 @@
       copyright 2025 <strong class="text-yellow-500">Trustbarter Limited</strong>. Designed by Olanrewaju Paul
     </h4>
   </div>
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4EvDKSSjxjDTr3hGy_oUGxK4Vej2V1mA",
+      authDomain: "trustbarter-7f8b0.firebaseapp.com",
+      projectId: "trustbarter-7f8b0",
+      storageBucket: "trustbarter-7f8b0.appspot.com",
+      messagingSenderId: "550123374269",
+      appId: "1:550123374269:web:bc84078db0c3b23f7ad9d4",
+      measurementId: "G-XSD1K5KZJ3"
+    };
 
-    <script type="module">
-        //trustbarter loan button and dropdown logics
-        const stateLgaData = {
-        Lagos: ["Ikeja", "Surulere", "Eti-Osa", "Badagry", "Ikorodu"],
-        Abuja: ["Gwagwalada", "Kuje", "Abaji", "Bwari", "Municipal"],
-        Kano: ["Fagge", "Gwale", "Nassarawa", "Dala", "Tarauni"],
-        Rivers: ["Port Harcourt", "Obio-Akpor", "Bonny", "Okrika", "Eleme"],
-        Enugu: ["Enugu North", "Enugu South", "Nsukka", "Udi", "Oji River"],
-        // Add more states and LGAs as needed
-        };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-        const stateToggle = document.getElementById("stateToggle");
-        const stateOptions = document.getElementById("stateOptions");
-        const selectedState = document.getElementById("selectedState");
-        const stateInput = document.getElementById("stateInput");
+    // Nigerian States and LGAs Data
+    const statesAndLGAs = {
+        "Lagos": ["Agege", "Ajeromi-Ifelodun", "Alimosho", "Amuwo-Odofin", "Apapa", "Badagry", "Epe", "Eti Osa", "Ibeju-Lekki", "Ifako-Ijaiye", "Ikeja", "Ikorodu", "Kosofe", "Lagos Island", "Lagos Mainland", "Mushin", "Ojo", "Oshodi-Isolo", "Shomolu", "Surulere"],
+        "Abuja": ["Abaji", "Bwari", "Gwagwalada", "Kuje", "Kwali", "Municipal Area Council"],
+        "Kano": ["Ajingi", "Albasu", "Bagwai", "Bebeji", "Bichi", "Bunkure", "Dala", "Dambatta", "Dawakin Kudu", "Dawakin Tofa", "Doguwa", "Fagge", "Gabasawa", "Garko", "Garun Mallam", "Gaya", "Gezawa", "Gwale", "Gwarzo", "Kabo", "Kano Municipal", "Karaye", "Kibiya", "Kiru", "Kumbotso", "Kunchi", "Kura", "Madobi", "Makoda", "Minjibir", "Nasarawa", "Rano", "Rimin Gado", "Rogo", "Shanono", "Sumaila", "Takai", "Tarauni", "Tofa", "Tsanyawa", "Tudun Wada", "Ungogo", "Warawa", "Wudil"],
+        "Rivers": ["Abua/Odual", "Ahoada East", "Ahoada West", "Akuku-Toru", "Andoni", "Asari-Toru", "Bonny", "Degema", "Eleme", "Emuoha", "Etche", "Gokana", "Ikwerre", "Khana", "Obio/Akpor", "Ogba/Egbema/Ndoni", "Ogu/Bolo", "Okrika", "Omuma", "Opobo/Nkoro", "Oyigbo", "Port Harcourt", "Tai"]
+    };
 
-        const lgaToggle = document.getElementById("lgaToggle");
-        const lgaOptions = document.getElementById("lgaOptions");
-        const selectedLGA = document.getElementById("selectedLGA");
-        const lgaInput = document.getElementById("lgaInput");
+    // DOM Elements
+    const form = document.getElementById('loan-form');
+    const submitBtn = document.getElementById('loan-submit');
+    const submitText = document.getElementById('submitText');
+    const loadingText = document.getElementById('loadingText');
+
+    // Dropdown functionality
+    function initializeDropdowns() {
+        // State dropdown
+        const stateToggle = document.getElementById('stateToggle');
+        const stateOptions = document.getElementById('stateOptions');
+        const selectedState = document.getElementById('selectedState');
+        const stateInput = document.getElementById('stateInput');
+
+        // LGA dropdown
+        const lgaToggle = document.getElementById('lgaToggle');
+        const lgaOptions = document.getElementById('lgaOptions');
+        const selectedLGA = document.getElementById('selectedLGA');
+        const lgaInput = document.getElementById('lgaInput');
+
+        // Reason dropdown
+        const reasonToggle = document.getElementById('reasonToggle');
+        const reasonOptions = document.getElementById('reasonOptions');
+        const selectedReason = document.getElementById('selectedReason');
+        const loanReasonInput = document.getElementById('loanReasonInput');
+
+        // User type dropdown
+        const dropdownToggle = document.getElementById('dropdownToggle');
+        const dropdownOptions = document.getElementById('dropdownOptions');
+        const dropdownSelected = document.getElementById('dropdownSelected');
+        const userTypeInput = document.getElementById('userType');
 
         // Populate states
-        for (let state in stateLgaData) {
-        const li = document.createElement("li");
-        li.className = "px-4 py-2 hover:bg-yellow-100 cursor-pointer";
-        li.textContent = state;
-        li.dataset.value = state;
-        stateOptions.appendChild(li);
-        }
+        Object.keys(statesAndLGAs).forEach(state => {
+            const li = document.createElement('li');
+            li.textContent = state;
+            li.className = 'cursor-pointer px-4 py-2 hover:bg-yellow-100';
+            li.addEventListener('click', () => {
+                selectedState.textContent = state;
+                stateInput.value = state;
+                stateOptions.classList.add('hidden');
+                
+                // Enable and populate LGA dropdown
+                lgaToggle.disabled = false;
+                lgaToggle.classList.remove('disabled:opacity-50');
+                populateLGAs(state);
+                
+                // Reset LGA selection
+                selectedLGA.textContent = 'Select an LGA';
+                lgaInput.value = '';
+            });
+            stateOptions.appendChild(li);
+        });
 
-        // Toggle dropdown visibility
-        stateToggle.addEventListener("click", () => stateOptions.classList.toggle("hidden"));
-        lgaToggle.addEventListener("click", () => lgaOptions.classList.toggle("hidden"));
-
-        // Select state
-        stateOptions.addEventListener("click", (e) => {
-        if (e.target.tagName === "LI") {
-            const selected = e.target.dataset.value;
-            selectedState.textContent = selected;
-            stateInput.value = selected;
-            stateOptions.classList.add("hidden");
-
-            // Reset and enable LGA dropdown
-            selectedLGA.textContent = "Select an LGA";
-            lgaInput.value = "";
-            lgaToggle.disabled = false;
-            lgaOptions.innerHTML = "";
-
-            // Populate LGAs
-            stateLgaData[selected].forEach(lga => {
-            const lgaLi = document.createElement("li");
-            lgaLi.className = "px-4 py-2 hover:bg-yellow-100 cursor-pointer";
-            lgaLi.textContent = lga;
-            lgaLi.dataset.value = lga;
-            lgaOptions.appendChild(lgaLi);
+        function populateLGAs(state) {
+            lgaOptions.innerHTML = '';
+            statesAndLGAs[state].forEach(lga => {
+                const li = document.createElement('li');
+                li.textContent = lga;
+                li.className = 'cursor-pointer px-4 py-2 hover:bg-yellow-100';
+                li.addEventListener('click', () => {
+                    selectedLGA.textContent = lga;
+                    lgaInput.value = lga;
+                    lgaOptions.classList.add('hidden');
+                });
+                lgaOptions.appendChild(li);
             });
         }
+
+        // Toggle dropdowns
+        stateToggle.addEventListener('click', () => {
+            stateOptions.classList.toggle('hidden');
+            lgaOptions.classList.add('hidden');
+            reasonOptions.classList.add('hidden');
+            dropdownOptions.classList.add('hidden');
         });
 
-        // Select LGA
-        lgaOptions.addEventListener("click", (e) => {
-        if (e.target.tagName === "LI") {
-            const selected = e.target.dataset.value;
-            selectedLGA.textContent = selected;
-            lgaInput.value = selected;
-            lgaOptions.classList.add("hidden");
-        }
-        });
-
-        // Close dropdowns if clicked outside
-        window.addEventListener("click", (e) => {
-        if (!stateToggle.contains(e.target) && !stateOptions.contains(e.target)) {
-            stateOptions.classList.add("hidden");
-        }
-        if (!lgaToggle.contains(e.target) && !lgaOptions.contains(e.target)) {
-            lgaOptions.classList.add("hidden");
-        }
-        });
-        //state and lga logic end
-
-        //business owner or salary earner logic start
-        const dropdownToggle = document.getElementById("dropdownToggle");
-        const dropdownOptions = document.getElementById("dropdownOptions");
-        const dropdownSelected = document.getElementById("dropdownSelected");
-        const userTypeInput = document.getElementById("userType");
-        const businessFields = document.getElementById("businessFields");
-        const salaryFields = document.getElementById("salaryFields");
-
-        // Toggle dropdown
-        dropdownToggle.addEventListener("click", () => {
-        dropdownOptions.classList.toggle("hidden");
-        });
-
-        // Handle selection
-        dropdownOptions.querySelectorAll("li").forEach(option => {
-        option.addEventListener("click", () => {
-            const value = option.getAttribute("data-value");
-            const text = option.innerText;
-
-            dropdownSelected.innerText = text;
-            userTypeInput.value = value;
-            dropdownOptions.classList.add("hidden");
-
-            if (value === "business") {
-            businessFields.classList.remove("hidden");
-            salaryFields.classList.add("hidden");
-            } else if (value === "salary") {
-            salaryFields.classList.remove("hidden");
-            businessFields.classList.add("hidden");
+        lgaToggle.addEventListener('click', () => {
+            if (!lgaToggle.disabled) {
+                lgaOptions.classList.toggle('hidden');
+                stateOptions.classList.add('hidden');
+                reasonOptions.classList.add('hidden');
+                dropdownOptions.classList.add('hidden');
             }
         });
+
+        reasonToggle.addEventListener('click', () => {
+            reasonOptions.classList.toggle('hidden');
+            stateOptions.classList.add('hidden');
+            lgaOptions.classList.add('hidden');
+            dropdownOptions.classList.add('hidden');
         });
 
-        // Close dropdown on outside click
-        window.addEventListener("click", (e) => {
-        if (!dropdownToggle.contains(e.target) && !dropdownOptions.contains(e.target)) {
-            dropdownOptions.classList.add("hidden");
-        }
+        dropdownToggle.addEventListener('click', () => {
+            dropdownOptions.classList.toggle('hidden');
+            stateOptions.classList.add('hidden');
+            lgaOptions.classList.add('hidden');
+            reasonOptions.classList.add('hidden');
         });
 
-        // Reason for Loan Dropdown
-        const reasonToggle = document.getElementById("reasonToggle");
-        const reasonOptions = document.getElementById("reasonOptions");
-        const selectedReason = document.getElementById("selectedReason");
-        const loanReasonInput = document.getElementById("loanReason");
-
-        reasonToggle.addEventListener("click", () => {
-        reasonOptions.classList.toggle("hidden");
-        });
-
-        reasonOptions.querySelectorAll("li").forEach(item => {
-        item.addEventListener("click", () => {
-            const value = item.getAttribute("data-value");
-            selectedReason.textContent = item.textContent;
-            loanReasonInput.value = value;
-            reasonOptions.classList.add("hidden");
-        });
-        });
-
-        // Optional: close dropdown if clicked outside
-        document.addEventListener("click", (e) => {
-        if (!reasonToggle.contains(e.target) && !reasonOptions.contains(e.target)) {
-            reasonOptions.classList.add("hidden");
-        }
-        });
-
-    </script>
-
-
-    <script type="module">
-    // Firebase SDK Imports
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        
-        import {
-            getFirestore, collection, addDoc, serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        
-        import {
-            getStorage, ref, uploadBytes, getDownloadURL
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-        
-        // Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyBrJzSs1f97vBVTvZj8qMP8VHNsXqCOQg0",
-            authDomain: "trustbarter-4763c.firebaseapp.com",
-            projectId: "trustbarter-4763c",
-            storageBucket: "trustbarter-4763c.appspot.com",
-            messagingSenderId: "579854252705",
-            appId: "1:579854252705:web:21ff1d31de4d55846d0ee0"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-        
-        const MAX_FILE_SIZE = 5 * 1024 * 1024;
-        
-        function validateFile(file, type = 'image') {
-            if (!file) return false;
-        
-            const imageTypes = ['image/jpeg', 'image/png', 'image/webp'];
-            const docTypes = ['application/pdf', 'image/jpeg', 'image/png'];
-            const validTypes = type === 'image' ? imageTypes : docTypes;
-        
-            if (!validTypes.includes(file.type)) {
-            alert(`❌ Invalid file type: ${file.name}`);
-            return false;
+        // Reason dropdown handler
+        reasonOptions.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                const value = e.target.getAttribute('data-value');
+                selectedReason.textContent = e.target.textContent;
+                loanReasonInput.value = value;
+                reasonOptions.classList.add('hidden');
             }
-            if (file.size > MAX_FILE_SIZE) {
-            alert(`❌ ${file.name} is too large. Max 5MB.`);
-            return false;
+        });
+
+        // User type dropdown handler
+        dropdownOptions.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                const value = e.target.getAttribute('data-value');
+                dropdownSelected.textContent = e.target.textContent;
+                userTypeInput.value = value;
+                dropdownOptions.classList.add('hidden');
+                
+                // Show/hide conditional fields
+                const businessFields = document.getElementById('businessFields');
+                const salaryFields = document.getElementById('salaryFields');
+                
+                if (value === 'business') {
+                    businessFields.classList.remove('hidden');
+                    salaryFields.classList.add('hidden');
+                } else if (value === 'salary') {
+                    salaryFields.classList.remove('hidden');
+                    businessFields.classList.add('hidden');
+                }
             }
-            return true;
-        }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.relative')) {
+                stateOptions.classList.add('hidden');
+                lgaOptions.classList.add('hidden');
+                reasonOptions.classList.add('hidden');
+                dropdownOptions.classList.add('hidden');
+            }
+        });
+    }
+
+    // File upload function
+    async function uploadFile(file, path) {
+        const storageRef = storage.ref().child(path);
+        const snapshot = await storageRef.put(file);
+        return await snapshot.ref.getDownloadURL();
+    }
+
+    // Show message function
+    function showMessage(message, type = 'success') {
+        const messageContainer = document.getElementById('messageContainer');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `p-4 rounded-md mb-4 ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        messageDiv.textContent = message;
         
-        async function uploadFile(file, pathPrefix) {
-            if (!file) return "";
+        messageContainer.appendChild(messageDiv);
         
-            const fileRef = ref(storage, `${pathPrefix}/${Date.now()}-${file.name}`);
-            const snapshot = await uploadBytes(fileRef, file);
-            const downloadUrl = await getDownloadURL(snapshot.ref);
-            return downloadUrl;
-        }
+        setTimeout(() => {
+            messageDiv.remove();
+        }, 5000);
+    }
+
+    // Form submission handler
+    async function handleFormSubmit(e) {
+        e.preventDefault();
         
-        
-        // DOM Ready
-        window.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("loan-form");
-        
-            if (!form) return;
-        
-            form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-        
+        // Disable submit button and show loading
+        submitBtn.disabled = true;
+        submitText.classList.add('hidden');
+        loadingText.classList.remove('hidden');
+
+        try {
             const formData = new FormData(form);
-            const userType = formData.get("userType");
-        
-            const payload = {
-                firstName: formData.get("firstName"),
-                lastName: formData.get("lastName"),
-                email: formData.get("email"),
-                phone: formData.get("phone"),
-                state: formData.get("state"),
-                lga: formData.get("lga"),
-                userType,
-                createdAt: serverTimestamp(),
-                timestamp: new Date().toLocaleString()
+            const applicationData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                state: formData.get('state'),
+                lga: formData.get('lga'),
+                loanAmount: parseFloat(formData.get('loanAmount')),
+                loanReason: formData.get('loanReason'),
+                userType: formData.get('userType'),
+                applicationDate: firebase.firestore.FieldValue.serverTimestamp(),
+                status: 'pending'
             };
-        
-            try {
-                if (userType === "business") {
-                payload.monthlyTurnover = formData.get("monthlyTurnover");
-                payload.cacDocumentUrl = await uploadFile(formData.get("cacDocument"), "loanUploads/CAC");
-                payload.bankStatementUrl = await uploadFile(formData.get("businessBankStatement"), "loanUploads/BankStatements");
-                } else if (userType === "salary") {
-                payload.monthlyIncome = formData.get("monthlyIncome");
-                payload.workIdUrl = await uploadFile(formData.get("workId"), "loanUploads/WorkIDs");
-                payload.bankStatementUrl = await uploadFile(formData.get("salaryBankStatement"), "loanUploads/BankStatements");
-                }
-        
-                const photo = formData.get("userPhoto");
-                if (photo && photo.size > 0) {
-                payload.userPhotoUrl = await uploadFile(photo, "loanUploads/UserPhotos", 'image');
-                }
-        
-                await addDoc(collection(db, "trustbarter-loan-applications"), payload);
-                alert("✅ Loan application submitted successfully.");
-                form.reset();
-            } catch (err) {
-                console.error("❌ Error submitting loan form:", err);
-                alert("❌ Something went wrong. Please try again.");
+
+            // Add conditional fields
+            if (formData.get('userType') === 'business') {
+                applicationData.monthlyTurnover = formData.get('monthlyTurnover');
+            } else if (formData.get('userType') === 'salary') {
+                applicationData.monthlyIncome = formData.get('monthlyIncome');
             }
-            });
-        });
-  
-    </script>
+
+            // Generate unique ID for this application
+            const applicationId = Date.now().toString();
+
+            // Upload files
+            const fileUploads = [];
+            
+            // Check for files and upload them
+            const files = ['cacDocument', 'businessBankStatement', 'workId', 'salaryBankStatement', 'employmentLetter'];
+            
+            for (const fileName of files) {
+                const file = formData.get(fileName);
+                if (file && file.size > 0) {
+                    const filePath = `loan-applications/${applicationId}/${fileName}_${Date.now()}`;
+                    try {
+                        const downloadURL = await uploadFile(file, filePath);
+                        applicationData[fileName + 'URL'] = downloadURL;
+                    } catch (error) {
+                        console.error(`Error uploading ${fileName}:`, error);
+                    }
+                }
+            }
+
+            // Save to Firestore
+            await db.collection('loanApplications').doc(applicationId).set(applicationData);
+
+            showMessage('Application submitted successfully! We will review your application and get back to you soon.', 'success');
+            form.reset();
+            
+            // Reset dropdowns
+            document.getElementById('selectedState').textContent = 'Select a state';
+            document.getElementById('selectedLGA').textContent = 'Select an LGA';
+            document.getElementById('selectedReason').textContent = 'Select a reason';
+            document.getElementById('dropdownSelected').textContent = 'Select an option';
+            
+            // Hide conditional fields
+            document.getElementById('businessFields').classList.add('hidden');
+            document.getElementById('salaryFields').classList.add('hidden');
+            
+            // Reset hidden inputs
+            document.getElementById('stateInput').value = '';
+            document.getElementById('lgaInput').value = '';
+            document.getElementById('loanReasonInput').value = '';
+            document.getElementById('userType').value = '';
+
+        } catch (error) {
+            console.error('Error submitting application:', error);
+            showMessage('Error submitting application. Please try again.', 'error');
+        } finally {
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitText.classList.remove('hidden');
+            loadingText.classList.add('hidden');
+        }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeDropdowns();
+        form.addEventListener('submit', handleFormSubmit);
+    });
+</script>
   </body>
 </html>
